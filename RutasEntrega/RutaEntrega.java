@@ -33,6 +33,15 @@ public class RutaEntrega {
         return listaDestinos;
     }
 
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setListaDestinos(HashSet<String> listaDestinos) {
+        this.listaDestinos = listaDestinos;
+    }
+    
+
     public RutaEntrega(String codigo, String nombre, String descripcion, HashSet<String> listaDestinos) {
         this.codigo = codigo;
         this.nombre = nombre;
