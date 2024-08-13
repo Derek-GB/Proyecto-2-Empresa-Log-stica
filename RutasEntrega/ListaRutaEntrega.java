@@ -4,6 +4,7 @@
  */
 package RutasEntrega;
 
+import Listas.Lista;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -11,7 +12,7 @@ import java.util.HashSet;
  *
  * @author Fernando
  */
-public class ListaRutaEntrega {
+public class ListaRutaEntrega implements Lista <RutaEntrega> {
     
  private ArrayList<RutaEntrega> rutas;
 
@@ -19,6 +20,7 @@ public class ListaRutaEntrega {
         this.rutas = new ArrayList<>();
     }
 
+ @Override
     public void agregar(RutaEntrega ruta) {
         this.rutas.add(ruta);
     }
@@ -39,10 +41,7 @@ public class ListaRutaEntrega {
         return false; 
     }
         
-    public boolean eliminar(String codigo) {
-        return rutas.removeIf(ruta -> ruta.getCodigo().equals(codigo));
-    }
-
+  
  
     public RutaEntrega buscar(String codigo) {
         for (RutaEntrega ruta : rutas) {
@@ -51,5 +50,10 @@ public class ListaRutaEntrega {
             }
         }
         return null; 
+    }
+
+    @Override
+    public void eliminar(String codigo) {
+        rutas.removeIf(ruta -> ruta.getCodigo().equals(codigo));
     }
 }
