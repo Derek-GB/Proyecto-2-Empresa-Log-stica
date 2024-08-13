@@ -12,5 +12,5 @@ package Listas;
  */
 public interface Lista<Objeto> {
     public void agregar(Objeto objeto);
-    public void eliminar(int identificacion);
+    public void eliminar(String identificacion);
 }
