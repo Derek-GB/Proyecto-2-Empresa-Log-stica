@@ -9,5 +9,7 @@ package Paquetes;
  * @author Tony
  */
 public enum Estado {
-    
+    ALMACEN,
+    CANCELADO,
+    DESPACHADO;
 }

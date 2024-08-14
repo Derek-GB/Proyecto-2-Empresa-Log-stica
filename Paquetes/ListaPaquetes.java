@@ -5,6 +5,8 @@
 package Paquetes;
 
 
+import Paquetes.Estado;
+import Paquetes.Paquete;
 import java.util.HashMap;
 
 /**
@@ -32,10 +34,18 @@ public class ListaPaquetes {
     }
 
     public void eliminar(String codigo) {
-        paquetes.remove(codigo);
+  Paquete paquete = paquetes.get(codigo.toUpperCase());
+        if (paquete != null && paquete.getEstado() != Estado.DESPACHADO) {
+            paquetes.remove(codigo.toUpperCase());
+            
+        }else{
+            throw new IllegalArgumentException("No se puede eliminar un paquete en el Estado Actual, [Despachado] ");
+        }
+        
     }
     
-    public boolean actualizar (String codigo,String descripcion , Boolean estado){
+    
+    public boolean actualizar (String codigo,String descripcion , Estado estado){
       
         if(paquetes.containsKey(codigo)){
              Paquete paquete = paquetes.get(codigo);

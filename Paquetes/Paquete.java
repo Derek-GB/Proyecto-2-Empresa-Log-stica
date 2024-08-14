@@ -16,7 +16,7 @@ public class Paquete {
     private double precio;
     private Cliente remitente;
     private Cliente destinatario;
-    private Boolean estado;
+    private Estado estado;
 
     public String getCodigo() {
         return codigo;
@@ -38,7 +38,7 @@ public class Paquete {
         return destinatario;
     }
 
-    public Boolean getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
@@ -50,7 +50,7 @@ public class Paquete {
         this.remitente = remitente;
     }
 
-    public void setEstado(Boolean estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
@@ -60,7 +60,7 @@ public class Paquete {
         this.precio = precio;
         this.remitente = remitente;
         this.destinatario = destinatario;
-        this.estado =false;
+        this.estado= Estado.ALMACEN;
     }
 
     public Paquete() {
