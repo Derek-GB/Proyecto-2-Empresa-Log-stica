@@ -54,7 +54,7 @@ public abstract class Persona {
     }
 
     public Persona() {
-        this(null,null,LocalDate.now(),null,null);
+        this("","",LocalDate.now(),"","");
     }
 
     @Override
