@@ -13,7 +13,7 @@ import Personas.Cliente;
 public class Paquete {
     private String codigo;
     private String descripcion;
-    private double precio;
+    private double peso;
     private Cliente remitente;
     private Cliente destinatario;
     private Estado estado;
@@ -26,8 +26,8 @@ public class Paquete {
         return descripcion;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getPeso() {
+        return peso;
     }
 
     public Cliente getRemitente() {
@@ -54,10 +54,10 @@ public class Paquete {
         this.estado = estado;
     }
 
-    public Paquete(String codigo, String descripcion, double precio, Cliente remitente, Cliente destinatario) {
+    public Paquete(String codigo, String descripcion, double peso, Cliente remitente, Cliente destinatario) {
         this.codigo = codigo;
         this.descripcion = descripcion;
-        this.precio = precio;
+        this.peso = peso;
         this.remitente = remitente;
         this.destinatario = destinatario;
         this.estado= Estado.ALMACEN;
