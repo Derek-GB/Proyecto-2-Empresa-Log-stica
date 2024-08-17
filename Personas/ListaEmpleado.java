@@ -24,7 +24,7 @@ public class ListaEmpleado implements Lista <Empleado> {
     }
     
     
-    public boolean actualizar(String identificacion, String correo,String telefono,Puesto puesto) {
+    public boolean actualizar(String identificacion, String correo,String telefono,PuestoEnum puesto) {
        
         for (Empleado empleado : empleados) {
             if (empleado.getIdentificacion().equals(identificacion)) {
@@ -34,8 +34,8 @@ public class ListaEmpleado implements Lista <Empleado> {
                 if (telefono != null && !telefono.isEmpty()) {
                     empleado.setTelefono(telefono);
                 }
-                if (puesto != null && !puesto.isEmpty) {
-                    empleado.setTelefono(puesto);
+                if (puesto != null) {
+                    empleado.setPuesto(puesto);
                 }
                 return true; 
             }

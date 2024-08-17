@@ -10,46 +10,37 @@ import java.time.LocalDate;
  *
  * @author DYLAN
  */
-enum Puesto {
-    Mensajero(270000.0),
-    Gerente(1400000.0),
-    Eecepcionista(350000.0),
-    Administrador(630000.0),
-    Despachador(360000.0),
-    Conductor(370000.0);
 
-    private final double salario;
 
-    Puesto(double salario) {
-        this.salario = salario;
-    }
-
-    public double getSalario() {
-        return salario;
-    }
-}
-
-public class Empleado extends Persona {
+public class Empleado extends PersonaDetallada {
     
     private double salario;
-    private Puesto puesto;
+    private PuestoEnum puesto;
 
     public double getSalario() {
         return salario;
     }
 
-    public Puesto getPuesto() {
+    public PuestoEnum getPuesto() {
         return puesto;
     }
 
-    public Empleado(double salario, Puesto puesto, String identificacion, String nombre, LocalDate fechaNacimiento, String correo, String telefono) {
-        super(identificacion, nombre, fechaNacimiento, correo, telefono);
+    public void setPuesto(PuestoEnum puesto) {
+        this.puesto = puesto;
+    }
+    
+    
+
+    public Empleado(double salario, PuestoEnum puesto, LocalDate fechaNacimiento, String correo, String telefono, String identificacion, String nombre) {
+        super(fechaNacimiento, correo, telefono, identificacion, nombre);
         this.salario = salario;
         this.puesto = puesto;
     }
 
+    
+
     public Empleado() {
-        this(0.0,Puesto.Mensajero,"","",LocalDate.now(),"","");
+        this(0.0,PuestoEnum.Mensajero,LocalDate.now(),"","","","");
         
     }
     

@@ -4,8 +4,6 @@
  */
 package Personas;
 
-import java.time.LocalDate;
-
 /**
  *
  * @author DYLAN
@@ -13,9 +11,6 @@ import java.time.LocalDate;
 public abstract class Persona {
     private String identificacion;
     private String nombre;
-    private LocalDate fechaNacimiento;
-    private String correo;
-    private String telefono;
 
     public String getIdentificacion() {
         return identificacion;
@@ -25,41 +20,18 @@ public abstract class Persona {
         return nombre;
     }
 
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public Persona(String identificacion, String nombre, LocalDate fechaNacimiento, String correo, String telefono) {
+    public Persona(String identificacion, String nombre) {
         this.identificacion = identificacion;
         this.nombre = nombre;
-        this.fechaNacimiento = fechaNacimiento;
-        this.correo = correo;
-        this.telefono = telefono;
     }
 
     public Persona() {
-        this("","",LocalDate.now(),"","");
+        this("","");
     }
 
     @Override
     public String toString() {
-        return "Persona{" + "identificacion=" + identificacion + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + ", correo=" + correo + ", telefono=" + telefono + '}';
+        return "Persona{" + "identificacion=" + identificacion + ", nombre=" + nombre + '}';
     }
     
     

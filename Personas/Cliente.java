@@ -11,7 +11,7 @@ import java.time.LocalDate;
  *
  * @author DYLAN
  */
-public class Cliente extends Persona{
+public class Cliente extends PersonaDetallada{
     private int edad;
 
     public int getEdad() {
@@ -24,13 +24,14 @@ public class Cliente extends Persona{
         return edad;
     }
 
-    public Cliente(int edad, String identificacion, String nombre, LocalDate fechaNacimiento, String correo, String telefono) {
-        super(identificacion, nombre, fechaNacimiento, correo, telefono);
-        this.edad = calcularEdad(fechaNacimiento);
+    public Cliente(int edad, LocalDate fechaNacimiento, String correo, String telefono, String identificacion, String nombre) {
+        super(fechaNacimiento, correo, telefono, identificacion, nombre);
+         this.edad = calcularEdad(fechaNacimiento);
     }
 
+   
     public Cliente() {
-        this(0,"","",LocalDate.now(),"","");
+        this(0,LocalDate.now(),"","","","");
     }
 
     @Override
