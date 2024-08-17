@@ -5,6 +5,7 @@
 package Paquetes;
 
 import Personas.Cliente;
+import Personas.Persona;
 
 /**
  *
@@ -14,8 +15,8 @@ public class Paquete {
     private String codigo;
     private String descripcion;
     private double peso;
-    private Cliente remitente;
-    private Cliente destinatario;
+    private Persona remitente;
+    private Persona destinatario;
     private Estado estado;
 
     public String getCodigo() {
@@ -30,11 +31,11 @@ public class Paquete {
         return peso;
     }
 
-    public Cliente getRemitente() {
+    public Persona getRemitente() {
         return remitente;
     }
 
-    public Cliente getDestinatario() {
+    public Persona getDestinatario() {
         return destinatario;
     }
 
@@ -46,7 +47,7 @@ public class Paquete {
         this.descripcion = descripcion;
     }
 
-    public void setRemitente(Cliente remitente) {
+    public void setRemitente(Persona remitente) {
         this.remitente = remitente;
     }
 
@@ -54,7 +55,7 @@ public class Paquete {
         this.estado = estado;
     }
 
-    public Paquete(String codigo, String descripcion, double peso, Cliente remitente, Cliente destinatario) {
+    public Paquete(String codigo, String descripcion, double peso, Persona remitente, Persona destinatario) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.peso = peso;
@@ -64,7 +65,7 @@ public class Paquete {
     }
 
     public Paquete() {
-        this("","",0,new Cliente(),new Cliente());
+        this("","",0,new Persona(),new Persona());
     }
     
     

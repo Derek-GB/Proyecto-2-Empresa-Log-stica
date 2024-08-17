@@ -8,7 +8,8 @@ package Personas;
  *
  * @author DYLAN
  */
-public abstract class Persona {
+public class Persona {
+
     private String identificacion;
     private String nombre;
 
@@ -26,14 +27,12 @@ public abstract class Persona {
     }
 
     public Persona() {
-        this("","");
+        this("", "");
     }
 
     @Override
     public String toString() {
         return "Persona{" + "identificacion=" + identificacion + ", nombre=" + nombre + '}';
     }
-    
-    
-    
+
 }
