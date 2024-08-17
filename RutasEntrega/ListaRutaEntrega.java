@@ -13,7 +13,7 @@ import java.util.HashSet;
  * @author Fernando
  */
 public class ListaRutaEntrega implements Lista <RutaEntrega> {
-    
+ 
  private ArrayList<RutaEntrega> rutas;
 
     public ListaRutaEntrega() {
