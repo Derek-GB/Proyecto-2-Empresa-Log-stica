@@ -8,6 +8,7 @@ package Paquetes;
 import Paquetes.Estado;
 import Paquetes.Paquete;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,11 +36,10 @@ public class ListaPaquetes {
 
     public void eliminar(String codigo) {
   Paquete paquete = paquetes.get(codigo.toUpperCase());
-        if (paquete != null && paquete.getEstado() != Estado.DESPACHADO) {
+        if (paquete != null && paquete.getEstado() == Estado.ALMACEN) {
             paquetes.remove(codigo.toUpperCase());
-            
         }else{
-            throw new IllegalArgumentException("No se puede eliminar un paquete en el Estado Actual, [Despachado] ");
+            throw new IllegalArgumentException("No se puede eliminar un paquete en el Estado Actual, [Eliminado Previamente] o [Despachado] ");
         }
         
     }

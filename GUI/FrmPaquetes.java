@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import Paquetes.Estado;
 import Paquetes.ListaPaquetes;
 import Paquetes.Paquete;
 import Personas.Cliente;
@@ -35,6 +36,8 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         this.txtPeso.setText("");
         this.txtIdRemitente.setText("");
         this.txtIdDestinatario.setText("");
+        this.txtDestinatario.setText("");
+        this.txtRemitente.setText("");
     }
 
     /**
@@ -78,7 +81,6 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Nombre Remitente");
 
-        txtIdRemitente.setEditable(false);
         txtIdRemitente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtIdRemitente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +98,6 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Codigo");
 
-        txtCodigo.setEditable(false);
         txtCodigo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,7 +108,6 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Peso");
 
-        txtPeso.setEditable(false);
         txtPeso.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtPeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +118,6 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Id Destinatario");
 
-        txtIdDestinatario.setEditable(false);
         txtIdDestinatario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtIdDestinatario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,7 +125,6 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
             }
         });
 
-        txtDestinatario.setEditable(false);
         txtDestinatario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDestinatario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +135,6 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Nombre Destinatario");
 
-        txtRemitente.setEditable(false);
         txtRemitente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtRemitente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,9 +302,11 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         if (paquete != null) {
             txtCodigo.setText(paquete.getCodigo());
             txtDescripcion.setText(paquete.getDescripcion());
-            txtIdRemitente.setText(String.valueOf(paquete.getDestinatario()));
+            txtRemitente.setText(String.valueOf(paquete.getDestinatario().getNombre()));
+            txtIdRemitente.setText(String.valueOf(paquete.getDestinatario().getIdentificacion()));
             txtPeso.setText(String.valueOf(paquete.getPeso()));
-            txtIdDestinatario.setText(String.valueOf(paquete.getRemitente()));
+            txtDestinatario.setText(String.valueOf(paquete.getRemitente().getNombre()));
+            txtIdDestinatario.setText(String.valueOf(paquete.getRemitente().getIdentificacion()));
         } else {
             JOptionPane.showMessageDialog(this, "El paquete con el código " + codigo + " no existe");
         }
@@ -323,7 +322,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
             lista.eliminar(codigo);
             JOptionPane.showMessageDialog(this, "El paquete con el código " + codigo + " fue eliminado");
             Limpiar();
-        } else {
+        } else{
             JOptionPane.showMessageDialog(this, "El paquete con el código " + codigo + " no existe");
         }
     }//GEN-LAST:event_BtnEliminarActionPerformed
@@ -331,8 +330,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (txtCodigo.getText() != "" || txtDescripcion.getText() != "" || txtRemitente.getText() != ""
                 || txtIdRemitente.getText() != "" || txtPeso.getText() != ""
-                || txtDestinatario.getText() != "" || txtIdDestinatario.getText() != "") 
-        {
+                || txtDestinatario.getText() != "" || txtIdDestinatario.getText() != "") {
             String codigo = txtCodigo.getText();
             String descripcion = txtDescripcion.getText();
             String destinatari = txtDestinatario.getText();
@@ -344,8 +342,11 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
             destinatario = new Persona(idDestinatario, destinatari);
             remitente = new Persona(idRemitente, remitent);
             paquete = new Paquete(codigo, descripcion, peso, destinatario, remitente);
-        }else{
-             JOptionPane.showMessageDialog(this, "Faltan campos por llenar, porfavor completarlos");
+            lista.agregar(codigo, paquete);
+            JOptionPane.showMessageDialog(this, "Paquete agregado correctamente");
+               Limpiar();
+        } else {
+            JOptionPane.showMessageDialog(this, "Faltan campos por llenar, porfavor completarlos");
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 

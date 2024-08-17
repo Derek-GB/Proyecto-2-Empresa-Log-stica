@@ -67,7 +67,11 @@ public class Paquete {
     public Paquete() {
         this("","",0,new Persona(),new Persona());
     }
-    
+
+    @Override
+    public String toString() {
+        return "Paquete " + "codigo = " + codigo + ", descripcion = " + descripcion + ", peso = " + peso + ", remitente =" + remitente + ", destinatario = " + destinatario + ", estado = " + estado;
+    }
     
     
 }
