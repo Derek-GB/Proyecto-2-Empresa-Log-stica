@@ -7,6 +7,8 @@ package GUI;
 
 import RutasEntrega.ListaRutaEntrega;
 import RutasEntrega.RutaEntrega;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.HashSet;
 import javax.swing.JOptionPane;
 
@@ -25,6 +27,7 @@ public class FrmRutasEntrega extends javax.swing.JInternalFrame {
         initComponents();
         lista = new ListaRutaEntrega();
         ruta = new RutaEntrega();
+       
     }
     
     private void Limpiar(){
@@ -60,7 +63,7 @@ public class FrmRutasEntrega extends javax.swing.JInternalFrame {
         BtnBuscar = new javax.swing.JButton();
         BtnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        btnActualizar1 = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Administrador de Rutas");
@@ -132,10 +135,10 @@ public class FrmRutasEntrega extends javax.swing.JInternalFrame {
             }
         });
 
-        btnActualizar1.setToolTipText("Actualizar");
-        btnActualizar1.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setToolTipText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizar1ActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
 
@@ -171,7 +174,7 @@ public class FrmRutasEntrega extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(btnActualizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92))
@@ -201,7 +204,7 @@ public class FrmRutasEntrega extends javax.swing.JInternalFrame {
                     .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActualizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -259,10 +262,10 @@ public class FrmRutasEntrega extends javax.swing.JInternalFrame {
         String codigo = txtCodigo.getText();
         if(codigo != null){
         lista.eliminar(codigo);
-        JOptionPane.showMessageDialog(this, "El paquete con el código " + codigo + " fue eliminado");
+        JOptionPane.showMessageDialog(this, "La ruta con el código " + codigo + " fue eliminada");
         Limpiar();
         }else{
-             JOptionPane.showMessageDialog(this, "El paquete con el código " + codigo + " no existe");
+             JOptionPane.showMessageDialog(this, "La ruta con el código " + codigo + " no existe");
         }
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
@@ -274,24 +277,28 @@ public class FrmRutasEntrega extends javax.swing.JInternalFrame {
             String nombre = txtNombre.getText();
             String descripcion =  txtDescripcion.getText();
             String[] rutas = txtRutasDestino.getText().split("\\n");
-             for (String ruta : rutas) {
-            rutasSet.add(ruta.trim()); 
-        }
+             for (String rutaD : rutas) {
+            rutasSet.add(rutaD.trim());} 
             
-            ruta = new RutaEntrega(codigo,nombre,descripcion,rutasSet);
+             ruta = new RutaEntrega(codigo,nombre,descripcion,rutasSet);
+            lista.agregar(ruta);
             Limpiar();
+             JOptionPane.showMessageDialog(this, "Ruta agregada correctamente");
+        }else{
+              JOptionPane.showMessageDialog(this, "Faltan campos por llenar, porfavor completarlos");
+                
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void btnActualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizar1ActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnActualizar1ActionPerformed
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBuscar;
     private javax.swing.JButton BtnEliminar;
-    private javax.swing.JButton btnActualizar1;
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
@@ -307,4 +314,7 @@ public class FrmRutasEntrega extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextArea txtRutasDestino;
     // End of variables declaration//GEN-END:variables
+
+ 
+
 }

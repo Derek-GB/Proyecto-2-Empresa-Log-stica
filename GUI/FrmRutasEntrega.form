@@ -101,7 +101,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="BtnEliminar" min="-2" pref="84" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="btnActualizar1" min="-2" pref="84" max="-2" attributes="0"/>
+                  <Component id="btnActualizar" min="-2" pref="84" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="btnLimpiar" min="-2" pref="84" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
@@ -137,7 +137,7 @@
                       <Component id="BtnBuscar" min="-2" pref="48" max="-2" attributes="0"/>
                       <Component id="BtnEliminar" min="-2" pref="48" max="-2" attributes="0"/>
                       <Component id="btnLimpiar" min="-2" pref="48" max="-2" attributes="0"/>
-                      <Component id="btnActualizar1" min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="btnActualizar" min="-2" pref="48" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="16" max="32767" attributes="0"/>
               </Group>
@@ -259,12 +259,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnActualizar1">
+        <Component class="javax.swing.JButton" name="btnActualizar">
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="Actualizar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizar1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -9,6 +9,8 @@ import Paquetes.ListaPaquetes;
 import Paquetes.Paquete;
 import Personas.Cliente;
 import Personas.Persona;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -71,6 +73,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         BtnEliminar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
 
+        setClosable(true);
         setTitle("Administrador de Paquetes");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
