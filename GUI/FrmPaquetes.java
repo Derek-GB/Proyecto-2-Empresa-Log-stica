@@ -409,7 +409,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        FrmActuPaquetes frm = new FrmActuPaquetes(null, true);
+        FrmActuPaquetes frm = new FrmActuPaquetes(null, true,lista);
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
     }//GEN-LAST:event_btnActualizarActionPerformed
