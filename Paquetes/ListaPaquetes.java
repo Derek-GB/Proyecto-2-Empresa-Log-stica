@@ -4,66 +4,64 @@
  */
 package Paquetes;
 
-
-import Paquetes.Estado;
-import Paquetes.Paquete;
+import Personas.Persona;
 import java.util.HashMap;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Tony
  */
 public class ListaPaquetes {
-    HashMap<String,Paquete> paquetes = new HashMap();
-    
-   
+
+    HashMap<String, Paquete> paquetes = new HashMap();
 
     public ListaPaquetes() {
         this.paquetes = new HashMap<>();
     }
-  
-    public void agregar (String codigo,Paquete objecto){
+
+    public void agregar(String codigo, Paquete objecto) {
         this.paquetes.put(codigo.toUpperCase(), objecto);
     }
-    
-    public Paquete buscar (String objecto){
-       if(paquetes.containsKey(objecto)){
-           return paquetes.get(objecto);
-       } 
-           return null;
+
+    public Paquete buscar(String objecto) {
+        if (paquetes.containsKey(objecto)) {
+            return paquetes.get(objecto);
+        }
+        return null;
     }
 
-    public void eliminar(String codigo) throws IllegalArgumentException{
-  Paquete paquete = paquetes.get(codigo.toUpperCase());
+    public void eliminar(String codigo) throws IllegalArgumentException {
+        Paquete paquete = paquetes.get(codigo.toUpperCase());
         if (paquete != null && paquete.getEstado() == Estado.ALMACEN) {
             paquetes.remove(codigo.toUpperCase());
-        }else{
-            throw new IllegalArgumentException("No se puede eliminar un paquete en el Estado Actual, [Eliminado Previamente] o [Despachado] ");
+        } else {
+            throw new IllegalArgumentException("No se puede eliminar un paquete en el Estado Actual [Despachado] ");
         }
-        
+
     }
-    
-    
-    public boolean actualizar (String codigo,String descripcion , Estado estado){
-      
-        if(paquetes.containsKey(codigo)){
-             Paquete paquete = paquetes.get(codigo);
-             
-        if(descripcion != null && !descripcion.isEmpty()){
-           paquete.setDescripcion(descripcion);
+
+    public boolean actualizar(String codigo, String descripcion, Persona destinatario) {
+
+        if (paquetes.containsKey(codigo)) {
+            Paquete paquete = paquetes.get(codigo);
+            boolean actualizado = false;
+            if (descripcion != null && !descripcion.isEmpty()) {
+                paquete.setDescripcion(descripcion);
+                actualizado = true;
+            }
+            
+            if (destinatario != null) {
+                paquete.setDestinatario(destinatario);
+                actualizado = true;
+            }
+            
+            if (actualizado) {
+                return true;
+            }
         }
-       if(estado != null){
-           paquete.setEstado(estado);
+
+        return false;
+
     }
-       return true;
-    }
-    return false;
-    
-    }
-    
-    
-    
-    
-    
+
 }

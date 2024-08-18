@@ -30,6 +30,12 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
     public FrmPaquetes() {
         initComponents();
         lista = new ListaPaquetes();
+        btnAlmacen.setSelected(true);
+        btnAlmacen.setEnabled(false);
+            btnCancelado.setEnabled(false);
+            btnDespachado.setEnabled(false);
+            btnEntregado.setEnabled(false);
+            
     }
 
     private void Limpiar() {
@@ -40,8 +46,17 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         this.txtIdDestinatario.setText("");
         this.txtDestinatario.setText("");
         this.txtRemitente.setText("");
+        this.buttonGroup1.clearSelection();
     }
 
+    private void deshabilitar(){
+        this.txtDescripcion.setEditable(false);
+        this.txtDestinatario.setEditable(false);
+        this.txtIdDestinatario.setEditable(false);
+        this.txtIdRemitente.setEditable(false);
+        this.txtPeso.setEditable(false);
+        this.txtRemitente.setEditable(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,6 +66,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -68,10 +84,16 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         txtRemitente = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        btnAlmacen = new javax.swing.JRadioButton();
+        btnCancelado = new javax.swing.JRadioButton();
+        btnEntregado = new javax.swing.JRadioButton();
+        btnDespachado = new javax.swing.JRadioButton();
         BtnBuscar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         BtnEliminar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Administrador de Paquetes");
@@ -148,6 +170,26 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Id Remitente");
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setText("Estado");
+
+        buttonGroup1.add(btnAlmacen);
+        btnAlmacen.setText("En Almacen");
+        btnAlmacen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlmacenActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(btnCancelado);
+        btnCancelado.setText("Cancelado");
+
+        buttonGroup1.add(btnEntregado);
+        btnEntregado.setText("Entregado");
+
+        buttonGroup1.add(btnDespachado);
+        btnDespachado.setText("Despachado");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -170,16 +212,30 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIdRemitente, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(txtDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtIdDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addGap(16, 16, 16))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addGap(107, 107, 107))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtIdRemitente, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnDespachado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnEntregado))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnAlmacen)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCancelado)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addComponent(jScrollPane1)
         );
@@ -201,16 +257,28 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdRemitente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtIdRemitente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAlmacen)
+                        .addComponent(btnCancelado))
                     .addComponent(txtRemitente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDespachado)
+                            .addComponent(btnEntregado))
+                        .addGap(0, 48, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(32, 32, 32))
         );
 
         BtnBuscar.setToolTipText("Buscar");
@@ -241,6 +309,13 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
             }
         });
 
+        btnLimpiar.setToolTipText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -251,19 +326,21 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)
-                                .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)
-                                .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)
-                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 17, Short.MAX_VALUE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 15, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,7 +353,8 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
                     .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -310,24 +388,39 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
             txtPeso.setText(String.valueOf(paquete.getPeso()));
             txtDestinatario.setText(String.valueOf(paquete.getRemitente().getNombre()));
             txtIdDestinatario.setText(String.valueOf(paquete.getRemitente().getIdentificacion()));
+
+            Estado estado = paquete.getEstado();
+
+           
+            switch (estado) {
+                case ALMACEN -> btnAlmacen.setSelected(true);
+                case CANCELADO -> btnCancelado.setSelected(true);
+                case DESPACHADO -> btnDespachado.setSelected(true);
+                case ENTREGADO -> btnEntregado.setSelected(true);
+                
+            }
+            
+           deshabilitar();
+            
         } else {
             JOptionPane.showMessageDialog(this, "El paquete con el código " + codigo + " no existe");
         }
+
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-          FrmActuPaquetes frm=new FrmActuPaquetes(null,true);
-          frm.setLocationRelativeTo(null);
-         frm.setVisible(true);
+        FrmActuPaquetes frm = new FrmActuPaquetes(null, true);
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
         String codigo = txtCodigo.getText();
-        try{
+        try {
             lista.eliminar(codigo);
             JOptionPane.showMessageDialog(this, "El paquete con el código " + codigo + " fue eliminado");
             Limpiar();
-        }catch (IllegalArgumentException nombre){
+        } catch (IllegalArgumentException nombre) {
             JOptionPane.showMessageDialog(this, "El paquete no existe");
         }
     }//GEN-LAST:event_BtnEliminarActionPerformed
@@ -336,6 +429,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         if (txtCodigo.getText() != "" || txtDescripcion.getText() != "" || txtRemitente.getText() != ""
                 || txtIdRemitente.getText() != "" || txtPeso.getText() != ""
                 || txtDestinatario.getText() != "" || txtIdDestinatario.getText() != "") {
+         
             String codigo = txtCodigo.getText();
             String descripcion = txtDescripcion.getText();
             String destinatari = txtDestinatario.getText();
@@ -343,13 +437,17 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
             String remitent = txtRemitente.getText();
             String idRemitente = txtIdRemitente.getText();
             Double peso = Double.valueOf(txtPeso.getText());
-
+            
+            if (lista.buscar(codigo) != null) { 
+            JOptionPane.showMessageDialog(this, "No es posible modificarlo. El código " + codigo + " ya existe.");
+            return; 
+        }
             destinatario = new Persona(idDestinatario, destinatari);
             remitente = new Persona(idRemitente, remitent);
             paquete = new Paquete(codigo, descripcion, peso, destinatario, remitente);
             lista.agregar(codigo, paquete);
             JOptionPane.showMessageDialog(this, "Paquete agregado correctamente");
-               Limpiar();
+            Limpiar(); 
         } else {
             /////////////////////////////////////////////////////// no salta bien error
             JOptionPane.showMessageDialog(this, "Faltan campos por llenar, porfavor completarlos");
@@ -364,12 +462,26 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRemitenteActionPerformed
 
+    private void btnAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlmacenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlmacenActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+         Limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBuscar;
     private javax.swing.JButton BtnEliminar;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JRadioButton btnAlmacen;
+    private javax.swing.JRadioButton btnCancelado;
+    private javax.swing.JRadioButton btnDespachado;
+    private javax.swing.JRadioButton btnEntregado;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -378,6 +490,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtCodigo;

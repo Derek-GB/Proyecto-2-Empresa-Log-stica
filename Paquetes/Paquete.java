@@ -46,9 +46,11 @@ public class Paquete {
         this.descripcion = descripcion;
     }
 
-    public void setRemitente(Persona remitente) {
-        this.remitente = remitente;
+    public void setDestinatario(Persona destinatario) {
+        this.destinatario = destinatario;
     }
+
+   
 
     public boolean despachar() {
         if(estado == Estado.ALMACEN){
