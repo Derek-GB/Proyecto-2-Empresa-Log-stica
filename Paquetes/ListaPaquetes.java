@@ -34,7 +34,7 @@ public class ListaPaquetes {
            return null;
     }
 
-    public void eliminar(String codigo) {
+    public void eliminar(String codigo) throws IllegalArgumentException{
   Paquete paquete = paquetes.get(codigo.toUpperCase());
         if (paquete != null && paquete.getEstado() == Estado.ALMACEN) {
             paquetes.remove(codigo.toUpperCase());

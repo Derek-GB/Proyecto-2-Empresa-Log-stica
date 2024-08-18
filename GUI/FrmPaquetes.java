@@ -321,12 +321,12 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
         String codigo = txtCodigo.getText();
-        if (codigo != null) {
+        try{
             lista.eliminar(codigo);
             JOptionPane.showMessageDialog(this, "El paquete con el código " + codigo + " fue eliminado");
             Limpiar();
-        } else{
-            JOptionPane.showMessageDialog(this, "El paquete con el código " + codigo + " no existe");
+        }catch (IllegalArgumentException nombre){
+            JOptionPane.showMessageDialog(this, "El paquete no existe");
         }
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
