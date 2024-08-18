@@ -4,7 +4,6 @@
  */
 package Paquetes;
 
-import Personas.Cliente;
 import Personas.Persona;
 
 /**
@@ -51,8 +50,28 @@ public class Paquete {
         this.remitente = remitente;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    public boolean despachar() {
+        if(estado == Estado.ALMACEN){
+            this.estado = Estado.DESPACHADO;
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean entregar() {
+        if(estado == Estado.DESPACHADO){
+            this.estado = Estado.ENTREGADO;
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean cancelar() {
+        if(estado == Estado.ALMACEN){
+            this.estado = Estado.CANCELADO;
+            return true;
+        }
+        return false;
     }
 
     public Paquete(String codigo, String descripcion, double peso, Persona remitente, Persona destinatario) {

@@ -11,5 +11,6 @@ package Paquetes;
 public enum Estado {
     ALMACEN,
     CANCELADO,
-    DESPACHADO;
+    DESPACHADO,
+    ENTREGADO;
 }

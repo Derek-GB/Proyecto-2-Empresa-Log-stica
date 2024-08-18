@@ -4,9 +4,9 @@
  */
 package Envios;
 
-import Paquetes.ListaPaquetes;
+import Paquetes.Paquete;
 import Personas.Cliente;
-import RutasEntrega.ListaRutaEntrega;
+import RutasEntrega.RutaEntrega;
 import java.time.LocalDate;
 
 /**
@@ -16,8 +16,8 @@ import java.time.LocalDate;
 public class Envio {
     private int numeroEnvio;
     private Cliente cliente;
-    private ListaPaquetes paquetes;
-    private ListaRutaEntrega rutas;
+    private Paquete paquete;
+    private RutaEntrega ruta;
     private LocalDate fechaEnvio;
     private LocalDate fechaEntrega;
     private double precio;
@@ -30,12 +30,12 @@ public class Envio {
         return cliente;
     }
 
-    public ListaPaquetes getPaquetes() {
-        return paquetes;
+    public Paquete getPaquete() {
+        return paquete;
     }
 
-    public ListaRutaEntrega getRutas() {
-        return rutas;
+    public RutaEntrega getRuta() {
+        return ruta;
     }
 
     public LocalDate getFechaEnvio() {
@@ -54,17 +54,19 @@ public class Envio {
         return 900 + (pesoKg * 1200);
     }
     
-    protected Envio(int numeroEnvio, Cliente cliente, ListaPaquetes paquetes, ListaRutaEntrega rutas, LocalDate fechaEnvio, LocalDate fechaEntrega, double pesoKg) {
+    protected Envio(int numeroEnvio, Cliente cliente, Paquete paquete, RutaEntrega ruta, double pesoKg) {
         this.numeroEnvio = numeroEnvio;
         this.cliente = cliente;
-        this.paquetes = paquetes;
-        this.rutas = rutas;
-        this.fechaEnvio = fechaEnvio;
+        this.paquete = paquete;
+        this.ruta = ruta;
+        this.fechaEnvio = LocalDate.now();
         this.precio = calcularPrecio(pesoKg);
     }
     
     public Envio(){
-        this(-1,new Cliente(), new ListaPaquetes(), new ListaRutaEntrega(),null,null,0.0);
+        this(-1,new Cliente(), new Paquete(), new RutaEntrega(),0.0);
+        this.fechaEnvio = null;
+        this.fechaEntrega = null;
     }
     
 }

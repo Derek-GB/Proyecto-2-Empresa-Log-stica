@@ -4,10 +4,9 @@
  */
 package Envios;
 
-import Paquetes.ListaPaquetes;
+import Paquetes.Paquete;
 import Personas.Cliente;
-import RutasEntrega.ListaRutaEntrega;
-import java.time.LocalDate;
+import RutasEntrega.RutaEntrega;
 import java.util.Iterator;
 import java.util.Queue;
 
@@ -24,35 +23,42 @@ public class ListaEnvios {
         return envios.iterator();
     }
 
-    public Falla registrarEnvio(Cliente cliente, ListaPaquetes paquetes, ListaRutaEntrega rutas, LocalDate fechaEnvio, LocalDate fechaEntrega, double distanciaKm) {
-        if (fechaEntrega.isBefore(LocalDate.now())) 
-            return Falla.FechaEntrega;
-        if (fechaEnvio.isAfter(fechaEntrega))
-            return Falla.FechaEnvio;
+    public void registrarEnvio(Cliente cliente, Paquete paquete, RutaEntrega ruta, double distanciaKm) throws IllegalArgumentException {
         if (distanciaKm <= 0)
-            return Falla.Peso;
-        envios.add(new Envio(contadorEnvios++,cliente, paquetes, rutas, fechaEnvio, fechaEntrega, distanciaKm));
-        return Falla.Nada;
+            throw new IllegalArgumentException("Distancia no puede ser cero o negativa");
+        envios.add(new Envio(contadorEnvios++,cliente, paquete, ruta, distanciaKm));
     }
     
-    public Envio buscar(int numeroEnvio){
+    public Envio buscar(int identificacion){
         for (Envio envio: envios){
-            if (numeroEnvio == envio.getNumeroEnvio())
+            if (envio.getNumeroEnvio() == identificacion)
                 return envio;
         }
         return null;
     }
     
     public boolean despachar(int identificacion){
+        for (Envio envio : envios){
+            if (envio.getNumeroEnvio() == identificacion)
+                return envio.getPaquete().despachar();
+        }
         return false;
     }
     
     public boolean entregar(int identificacion){
+        for (Envio envio : envios){
+            if (envio.getNumeroEnvio() == identificacion)
+                return envio.getPaquete().entregar();
+        }
         return false;
     }
 
     public boolean cancelar(int identificacion) {
-        return envios.removeIf(envio -> envio.getNumeroEnvio() == identificacion && envio.get);
+        for (Envio envio : envios){
+            if (envio.getNumeroEnvio() == identificacion)
+                return envio.getPaquete().cancelar();
+        }
+        return false;
     }
 
 }
