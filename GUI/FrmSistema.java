@@ -95,6 +95,7 @@ public class FrmSistema extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
 
         btnPaquetes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/paquete.png"))); // NOI18N
+        btnPaquetes.setToolTipText("Paquete");
         btnPaquetes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnPaquetes.setFocusable(false);
         btnPaquetes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -108,6 +109,7 @@ public class FrmSistema extends javax.swing.JFrame {
         jToolBar1.add(btnPaquetes);
 
         btnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/rutas.png"))); // NOI18N
+        btnEmpleados.setToolTipText("Empleados");
         btnEmpleados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnEmpleados.setFocusable(false);
         btnEmpleados.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -121,6 +123,7 @@ public class FrmSistema extends javax.swing.JFrame {
         jToolBar1.add(btnEmpleados);
 
         btnRutas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/rutas.png"))); // NOI18N
+        btnRutas.setToolTipText("Rutas");
         btnRutas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnRutas.setFocusable(false);
         btnRutas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -134,6 +137,7 @@ public class FrmSistema extends javax.swing.JFrame {
         jToolBar1.add(btnRutas);
 
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cliente.png"))); // NOI18N
+        btnClientes.setToolTipText("Clientes");
         btnClientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnClientes.setFocusable(false);
         btnClientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -147,6 +151,7 @@ public class FrmSistema extends javax.swing.JFrame {
         jToolBar1.add(btnClientes);
 
         btnEnvios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/envio.png"))); // NOI18N
+        btnEnvios.setToolTipText("Envios");
         btnEnvios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnEnvios.setFocusable(false);
         btnEnvios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
