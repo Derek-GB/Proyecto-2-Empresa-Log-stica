@@ -25,22 +25,28 @@ public class ListaRutaEntrega implements Lista <RutaEntrega> {
         this.rutas.add(ruta);
     }
 
-    public boolean actualizar(String codigo, String descripcion, HashSet<String> listaDestinos) {
-       
-        for (RutaEntrega ruta : rutas) {
-            if (ruta.getCodigo().equals(codigo)) {
-                if (descripcion != null && !descripcion.isEmpty()) {
-                    ruta.setDescripcion(descripcion);
-                }
-                if (listaDestinos != null && !listaDestinos.isEmpty()) {
-                    ruta.setListaDestinos(listaDestinos);
-                }
-                return true; 
+   public boolean actualizar(String codigo, String descripcion, HashSet<String> listaDestinos) {
+    for (RutaEntrega ruta : rutas) {
+        if (ruta.getCodigo().equals(codigo)) {
+            boolean actualizado = false;
+
+            if (descripcion != null && !descripcion.isEmpty()) {
+                ruta.setDescripcion(descripcion);
+                actualizado = true;
+            }
+
+            if (listaDestinos != null && !listaDestinos.isEmpty()) {
+                ruta.setListaDestinos(listaDestinos);
+                actualizado = true;
+            }
+
+            if (actualizado) {
+                return true;
             }
         }
-        return false; 
     }
-        
+    return false;
+}
   
  
     public RutaEntrega buscar(String codigo) {
