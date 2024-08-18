@@ -298,7 +298,10 @@ public class FrmSistema extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnviosActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        // TODO add your handling code here:
+        FrmCliente frm = new FrmCliente();
+        this.deskMenu.add(frm);
+        frm.setLocation((this.deskMenu.getWidth()-frm.getWidth())/2, (this.deskMenu.getHeight()-frm.getHeight())/2);
+        frm.setVisible(true);
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRutasActionPerformed

@@ -24,14 +24,14 @@ public class Cliente extends PersonaDetallada{
         return edad;
     }
 
-    public Cliente(int edad, LocalDate fechaNacimiento, String correo, String telefono, String identificacion, String nombre) {
+    public Cliente(LocalDate fechaNacimiento, String correo, String telefono, String identificacion, String nombre) {
         super(fechaNacimiento, correo, telefono, identificacion, nombre);
          this.edad = calcularEdad(fechaNacimiento);
     }
 
    
     public Cliente() {
-        this(0,LocalDate.now(),"","","","");
+        this(LocalDate.now(),"","","","");
     }
 
     @Override
