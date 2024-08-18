@@ -316,7 +316,9 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
+          FrmActuPaquetes frm=new FrmActuPaquetes(null,true);
+          frm.setLocationRelativeTo(null);
+         frm.setVisible(true);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
@@ -349,6 +351,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Paquete agregado correctamente");
                Limpiar();
         } else {
+            /////////////////////////////////////////////////////// no salta bien error
             JOptionPane.showMessageDialog(this, "Faltan campos por llenar, porfavor completarlos");
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
