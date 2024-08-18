@@ -50,17 +50,17 @@ public class Envio {
         return precio;
     }
 
-    private double calcularPrecio(double distanciaKm){
-        return 900 + (distanciaKm * 1200);
+    private double calcularPrecio(double pesoKg){
+        return 900 + (pesoKg * 1200);
     }
     
-    protected Envio(int numeroEnvio, Cliente cliente, ListaPaquetes paquetes, ListaRutaEntrega rutas, LocalDate fechaEnvio, LocalDate fechaEntrega, double distanciaKm) {
+    protected Envio(int numeroEnvio, Cliente cliente, ListaPaquetes paquetes, ListaRutaEntrega rutas, LocalDate fechaEnvio, LocalDate fechaEntrega, double pesoKg) {
         this.numeroEnvio = numeroEnvio;
         this.cliente = cliente;
         this.paquetes = paquetes;
         this.rutas = rutas;
         this.fechaEnvio = fechaEnvio;
-        this.precio = calcularPrecio(distanciaKm);
+        this.precio = calcularPrecio(pesoKg);
     }
     
     public Envio(){

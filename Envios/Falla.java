@@ -12,5 +12,5 @@ public enum Falla {
     Nada,
     FechaEnvio,
     FechaEntrega,
-    Distancia;
+    Peso;
 }
