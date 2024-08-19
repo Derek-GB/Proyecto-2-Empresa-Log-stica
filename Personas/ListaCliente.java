@@ -9,6 +9,7 @@ import Paquetes.Estado;
 import Paquetes.ListaPaquetes;
 import Paquetes.Paquete;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -92,5 +93,9 @@ public class ListaCliente implements Lista <Cliente>{
             }
         }
         return false; 
+    }
+    
+     public Iterator<Cliente> getClientes() {
+        return Clientes.iterator();
     }
 }

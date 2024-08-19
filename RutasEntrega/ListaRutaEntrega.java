@@ -7,12 +7,13 @@ package RutasEntrega;
 import Listas.Lista;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  *
  * @author Fernando
  */
-public class ListaRutaEntrega implements Lista <RutaEntrega> {
+public class ListaRutaEntrega  {
  
  private ArrayList<RutaEntrega> rutas;
 
@@ -20,9 +21,15 @@ public class ListaRutaEntrega implements Lista <RutaEntrega> {
         this.rutas = new ArrayList<>();
     }
 
- @Override
-    public void agregar(RutaEntrega ruta) {
-        this.rutas.add(ruta);
+    public boolean agregar(RutaEntrega nuevaRuta) {
+        for (RutaEntrega ruta : rutas) {
+            if (ruta.getCodigo().equals(nuevaRuta.getCodigo())) {
+               
+                return false; 
+            }
+        }
+        rutas.add(nuevaRuta);
+        return true;
     }
 
    public boolean actualizar(String codigo, String descripcion, HashSet<String> listaDestinos) {
@@ -58,8 +65,13 @@ public class ListaRutaEntrega implements Lista <RutaEntrega> {
         return null; 
     }
 
-    @Override
-    public void eliminar(String codigo) {
-        rutas.removeIf(ruta -> ruta.getCodigo().equals(codigo));
+    
+    public boolean eliminar(String codigo) {
+        boolean rutaEliminada = rutas.removeIf(ruta -> ruta.getCodigo().equals(codigo));
+        return rutaEliminada; 
+    }
+    
+     public Iterator<RutaEntrega> getRutas() {
+        return rutas.iterator();
     }
 }
