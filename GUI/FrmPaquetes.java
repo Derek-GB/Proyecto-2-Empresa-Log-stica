@@ -10,7 +10,12 @@ import Paquetes.Paquete;
 import Personas.Cliente;
 import Personas.Persona;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.HierarchyEvent;
+import java.awt.event.HierarchyListener;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,6 +34,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
      */
     public FrmPaquetes() {
         initComponents();
+        ajustarImagenes();
         lista = new ListaPaquetes();
         btnAlmacen.setSelected(true);
         btnAlmacen.setEnabled(false);
@@ -281,6 +287,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
                 .addGap(32, 32, 32))
         );
 
+        BtnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar.png"))); // NOI18N
         BtnBuscar.setToolTipText("Buscar");
         BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,6 +295,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
             }
         });
 
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizar.png"))); // NOI18N
         btnActualizar.setToolTipText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,6 +303,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
             }
         });
 
+        BtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar.png"))); // NOI18N
         BtnEliminar.setToolTipText("Eliminar");
         BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,6 +311,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
             }
         });
 
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar.png"))); // NOI18N
         btnAgregar.setToolTipText("Nuevo");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,6 +319,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
             }
         });
 
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar.png"))); // NOI18N
         btnLimpiar.setToolTipText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -501,4 +512,30 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPeso;
     private javax.swing.JTextField txtRemitente;
     // End of variables declaration//GEN-END:variables
+
+ public void ajustarBtn(final javax.swing.JButton cosa, final String ubicacion) {
+        final ImageIcon image = new ImageIcon(getClass().getResource(ubicacion));
+
+        cosa.addHierarchyListener(new HierarchyListener() {
+            @Override
+            public void hierarchyChanged(HierarchyEvent e) {
+                if ((e.getChangeFlags() & HierarchyEvent.SHOWING_CHANGED) != 0 && cosa.isShowing()) {
+                    Icon icon = new ImageIcon(image.getImage().getScaledInstance(cosa.getWidth(), cosa.getHeight(), Image.SCALE_DEFAULT));
+                    cosa.setIcon(icon);
+
+                    cosa.removeHierarchyListener(this);
+                }
+            }
+        });
+    }
+
+    public void ajustarImagenes() {
+        ajustarBtn(BtnEliminar, "/Imagenes/Eliminar.png");
+        ajustarBtn(btnAgregar, "/Imagenes/guardar.png");
+        ajustarBtn(BtnBuscar, "/Imagenes/Buscar.png");
+        ajustarBtn(btnLimpiar, "/Imagenes/Limpiar.png");
+        ajustarBtn(btnActualizar, "/Imagenes/Actualizar.png");
+
+    }
+
 }
