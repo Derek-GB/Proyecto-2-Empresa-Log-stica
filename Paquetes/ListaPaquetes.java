@@ -6,6 +6,7 @@ package Paquetes;
 
 import Personas.Persona;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  *
@@ -62,6 +63,9 @@ public class ListaPaquetes {
 
         return false;
 
+    }
+    public Iterator<Paquete> getPaquetes() {
+        return paquetes.values().iterator();
     }
 
 }
