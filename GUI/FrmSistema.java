@@ -4,18 +4,26 @@
  */
 package GUI;
 
+import Envios.ListaEnvios;
+import Paquetes.ListaPaquetes;
+import Personas.ListaCliente;
+import RutasEntrega.ListaRutaEntrega;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+//import javax.swing.JFrame;
 
 /**
  *
  * @author Fernando
  */
 public class FrmSistema extends javax.swing.JFrame {
+private ListaEnvios envios;
+private ListaPaquetes paquetes;
+private ListaCliente clientes;
+private ListaRutaEntrega rutas;
 
     /**
      * Creates new form FrmSistema
@@ -91,7 +99,6 @@ public class FrmSistema extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 538));
         jPanel1.setLayout(null);
 
-        jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
         btnPaquetes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/paquete.png"))); // NOI18N
@@ -177,9 +184,7 @@ public class FrmSistema extends javax.swing.JFrame {
         deskMenu.setLayout(deskMenuLayout);
         deskMenuLayout.setHorizontalGroup(
             deskMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(deskMenuLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 996, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
         );
         deskMenuLayout.setVerticalGroup(
             deskMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,7 +299,10 @@ public class FrmSistema extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPaquetesActionPerformed
 
     private void btnEnviosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviosActionPerformed
-        // TODO add your handling code here:
+        FrmEnvios frm = new FrmEnvios(envios, clientes, paquetes, rutas);
+        this.deskMenu.add(frm);
+         frm.setLocation((this.deskMenu.getWidth()-frm.getWidth())/2, (this.deskMenu.getHeight()-frm.getHeight())/2);
+        frm.setVisible(true);
     }//GEN-LAST:event_btnEnviosActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
@@ -341,19 +349,19 @@ public class FrmSistema extends javax.swing.JFrame {
         int y = (screenSize.height - this.getHeight()) / 2;
         this.setLocation(x, y);
     }
-     public void ajustarTxt(String ubicacion, javax.swing.JLabel cosa) {
+     private void ajustarTxt(String ubicacion, javax.swing.JLabel cosa) {
         ImageIcon image = new ImageIcon(getClass().getResource(ubicacion));
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(cosa.getWidth(), cosa.getHeight(), Image.SCALE_DEFAULT));
         cosa.setIcon(icon);
     }
      
-    public void ajustarBtn(String ubicacion, javax.swing.JButton cosa) {
+    private void ajustarBtn(String ubicacion, javax.swing.JButton cosa) {
         ImageIcon image = new ImageIcon(getClass().getResource(ubicacion));
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(cosa.getWidth(), cosa.getHeight(), Image.SCALE_DEFAULT));
         cosa.setIcon(icon);
     }
     
-     public void ajustarImagenes() {
+     private void ajustarImagenes() {
         ajustarTxt("/Imagenes/camion.png", txtCamion);
         ajustarBtn("/Imagenes/rutas.png", btnRutas);
         ajustarBtn("/Imagenes/cliente.png", btnClientes);

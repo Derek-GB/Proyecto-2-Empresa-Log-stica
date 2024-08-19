@@ -23,10 +23,10 @@ public class ListaEnvios {
         return envios.iterator();
     }
 
-    public void registrarEnvio(Cliente cliente, Paquete paquete, RutaEntrega ruta, double distanciaKm) throws IllegalArgumentException {
-        if (distanciaKm <= 0)
+    public void registrarEnvio(Cliente cliente, Paquete paquete, RutaEntrega ruta, double pesoKg) throws IllegalArgumentException {
+        if (pesoKg <= 0)
             throw new IllegalArgumentException("Distancia no puede ser cero o negativa");
-        envios.add(new Envio(contadorEnvios++,cliente, paquete, ruta, distanciaKm));
+        envios.add(new Envio(contadorEnvios++,cliente, paquete, ruta, pesoKg));
     }
     
     public Envio buscar(int identificacion){
