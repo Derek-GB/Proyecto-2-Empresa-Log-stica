@@ -25,4 +25,8 @@ public enum PuestoEnum  {
     public double getSalario() {
         return salario;
     }
+    
+      public String toString() {
+        return this.name(); // O retorna un String personalizado si prefieres
+    }
 }

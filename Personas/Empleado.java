@@ -27,20 +27,21 @@ public class Empleado extends PersonaDetallada {
 
     public void setPuesto(PuestoEnum puesto) {
         this.puesto = puesto;
+        this.salario = puesto.getSalario();
     }
     
     
 
-    public Empleado(double salario, PuestoEnum puesto, LocalDate fechaNacimiento, String correo, String telefono, String identificacion, String nombre) {
+    public Empleado(PuestoEnum puesto, LocalDate fechaNacimiento, String correo, String telefono, String identificacion, String nombre) {
         super(fechaNacimiento, correo, telefono, identificacion, nombre);
         this.salario = salario;
-        this.puesto = puesto;
+        this.salario = puesto.getSalario();
     }
 
     
 
     public Empleado() {
-        this(0.0,PuestoEnum.Mensajero,LocalDate.now(),"","","","");
+        this(PuestoEnum.Mensajero,LocalDate.now(),"","","","");
         
     }
     

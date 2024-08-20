@@ -288,7 +288,10 @@ private ListaRutaEntrega rutas;
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
-        // TODO add your handling code here:
+         FrmEmpleados frm = new FrmEmpleados();
+        this.deskMenu.add(frm);
+         frm.setLocation((this.deskMenu.getWidth()-frm.getWidth())/2, (this.deskMenu.getHeight()-frm.getHeight())/2);
+        frm.setVisible(true);
     }//GEN-LAST:event_btnEmpleadosActionPerformed
 
     private void btnPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaquetesActionPerformed
