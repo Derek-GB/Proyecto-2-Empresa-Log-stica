@@ -12,16 +12,24 @@ import java.util.Iterator;
  *
  * @author DYLAN
  */
-public class ListaEmpleado implements Lista <Empleado> {
+public class ListaEmpleado {
     private ArrayList<Empleado> empleados;
 
     public ListaEmpleado() {
         this.empleados = new ArrayList<>();
     }
 
-    @Override
-    public void agregar(Empleado objeto) {
-      this.empleados.add(objeto);
+
+    
+    public boolean agregar(Empleado nuevoEmpleado) {
+        for (Empleado empleado : empleados) {
+            if (empleado.getIdentificacion().equals(nuevoEmpleado.getIdentificacion())) {
+               
+                return false; 
+            }
+        }
+        empleados.add(nuevoEmpleado);
+        return true;
     }
     
     
@@ -54,7 +62,6 @@ public class ListaEmpleado implements Lista <Empleado> {
     }
     
 
-    @Override
     public void eliminar(String identificacion) {
         empleados.removeIf(empleado -> empleado.getIdentificacion().equals(identificacion));
     }
