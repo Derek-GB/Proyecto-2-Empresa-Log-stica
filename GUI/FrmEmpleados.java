@@ -350,7 +350,7 @@ public class FrmEmpleados extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(this, "Faltan campos por llenar, por favor completarlos.");
         
     } else {
-        // Obtener los valores de los campos
+        
         String identificacion = txtIdentificacion.getText();
         String nombre = txtNombre.getText();
         LocalDate fechaNacimiento = LocalDate.parse(txtFechaNacimiento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -359,7 +359,7 @@ public class FrmEmpleados extends javax.swing.JInternalFrame {
         String seleccion = (String) cbxPuesto.getSelectedItem();
         PuestoEnum puesto;
 
-        // Asignar el puesto en base a la selección
+        
         switch (seleccion) {
             case "Mensajero":
                 puesto = PuestoEnum.Mensajero;
@@ -384,10 +384,10 @@ public class FrmEmpleados extends javax.swing.JInternalFrame {
                 break;
         }
 
-        // Crear el objeto empleado
+      
         Empleado empleado = new Empleado(puesto, fechaNacimiento, correo, telefono, identificacion, nombre);
         
-        // Intentar agregar el empleado a la lista
+        
         boolean empleadoAgregado = lista.agregar(empleado);
         
         if (empleadoAgregado) {

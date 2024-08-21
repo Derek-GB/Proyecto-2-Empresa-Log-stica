@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author DYLAN
  */
-public class ListaCliente implements Lista <Cliente>{
+public class ListaCliente {
     
     private ArrayList<Cliente> Clientes;
     private ListaPaquetes listaPaquetes;
@@ -30,9 +30,16 @@ public class ListaCliente implements Lista <Cliente>{
         this.listaPaquetes = listaPaquetes;
     }
 
-    @Override
-    public void agregar(Cliente objeto) {
-      this.Clientes.add(objeto);
+    
+    public boolean agregar(Cliente nuevoCliente) {
+        for (Cliente cliente : Clientes) {
+            if (cliente.getIdentificacion().equals(nuevoCliente.getIdentificacion())) {
+               
+                return false; 
+            }
+        }
+        Clientes.add(nuevoCliente);
+        return true;
     }
     
     public Cliente buscar(String identificacion) {
@@ -46,7 +53,7 @@ public class ListaCliente implements Lista <Cliente>{
     
      public boolean tienePaqueteEnTransito(Cliente cliente){
       boolean tienePaqueteEnTransito = false;
-      List<String> codigosPaquetes = obtenerCodigosPaquetes(cliente); // Implementar este método según tu lógica
+      List<String> codigosPaquetes = obtenerCodigosPaquetes(cliente); 
 
         for (String codigo : codigosPaquetes) {
             Paquete paquete = listaPaquetes.buscar(codigo);
@@ -60,7 +67,7 @@ public class ListaCliente implements Lista <Cliente>{
     
      }
 
-    @Override
+ 
 //    Queda pendiente la excepcion
     public void eliminar(String identificacion)throws ClienteConPaquetesEnTransitoException {
         Cliente cliente = buscar(identificacion);
