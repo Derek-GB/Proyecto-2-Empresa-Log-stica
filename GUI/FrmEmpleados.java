@@ -206,11 +206,12 @@ public class FrmEmpleados extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -346,51 +347,63 @@ public class FrmEmpleados extends javax.swing.JInternalFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
-        if(txtIdentificacion.getText() != "" || txtFechaNacimiento.getText()!= "" || txtCorreo.getText() != "" || txtNombre.getText() != "" || txtTelefono.getText() != "" || txtSalario.getText() != ""|| cbxPuesto.getSelectedItem()!= "" )
-        {
-            String identificacion = txtIdentificacion.getText();
-            String nombre = txtNombre.getText();
-            LocalDate fechaNacimiento = LocalDate.parse(txtFechaNacimiento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            String correo = txtCorreo.getText();
-            String telefono = txtTelefono.getText();
-//            double salario = Double.parseDouble(txtSalario.getText());
-//            PuestoEnum puesto = (PuestoEnum) cbxPuesto.getSelectedItem();
-            String seleccion = (String) cbxPuesto.getSelectedItem();
-       PuestoEnum puesto;
-       switch (seleccion) {
-        case "Mensajero":
-            puesto=PuestoEnum.Mensajero;
-            break;
-        case "Gerente":
-            puesto=PuestoEnum.Gerente;
-            break;
-        case "Recepcionista":
-            puesto=PuestoEnum.Recepcionista;
-            break;
-        case "Administrador":
-           puesto=PuestoEnum.Administrador;
-            break;
-        case "Despachador":
-            puesto=PuestoEnum.Despachador;
-            break;
-        case "Conductor":
-            puesto=PuestoEnum.Conductor;
-            break;
-        default:
-            puesto=PuestoEnum.Mensajero;
-            break;
-    }
+        if (txtIdentificacion.getText().isEmpty() || 
+        txtFechaNacimiento.getText().isEmpty() || 
+        txtCorreo.getText().isEmpty() || 
+        txtNombre.getText().isEmpty() || 
+        txtTelefono.getText().isEmpty() ||  
+        cbxPuesto.getSelectedItem() == null) {
 
-            empleado = new Empleado(puesto,fechaNacimiento,correo,telefono,identificacion,nombre);
-            lista.agregar(empleado);
-            Limpiar();
-            JOptionPane.showMessageDialog(this, "Empleado agregado correctamente");
-        }else{
-            JOptionPane.showMessageDialog(this, "Faltan campos por llenar, porfavor completarlos");
+        JOptionPane.showMessageDialog(this, "Faltan campos por llenar, por favor completarlos.");
+        
+    } else {
+        // Obtener los valores de los campos
+        String identificacion = txtIdentificacion.getText();
+        String nombre = txtNombre.getText();
+        LocalDate fechaNacimiento = LocalDate.parse(txtFechaNacimiento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        String correo = txtCorreo.getText();
+        String telefono = txtTelefono.getText();
+        String seleccion = (String) cbxPuesto.getSelectedItem();
+        PuestoEnum puesto;
 
+        // Asignar el puesto en base a la selección
+        switch (seleccion) {
+            case "Mensajero":
+                puesto = PuestoEnum.Mensajero;
+                break;
+            case "Gerente":
+                puesto = PuestoEnum.Gerente;
+                break;
+            case "Recepcionista":
+                puesto = PuestoEnum.Recepcionista;
+                break;
+            case "Administrador":
+                puesto = PuestoEnum.Administrador;
+                break;
+            case "Despachador":
+                puesto = PuestoEnum.Despachador;
+                break;
+            case "Conductor":
+                puesto = PuestoEnum.Conductor;
+                break;
+            default:
+                puesto = PuestoEnum.Mensajero;
+                break;
         }
-    }//GEN-LAST:event_btnAgregarActionPerformed
 
+        // Crear el objeto empleado
+        Empleado empleado = new Empleado(puesto, fechaNacimiento, correo, telefono, identificacion, nombre);
+        
+        // Intentar agregar el empleado a la lista
+        boolean empleadoAgregado = lista.agregar(empleado);
+        
+        if (empleadoAgregado) {
+            Limpiar();
+            JOptionPane.showMessageDialog(this, "Empleado agregado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Ya existe un empleado con la identificación '" + identificacion + "'.");}
+    }//GEN-LAST:event_btnAgregarActionPerformed
+    }
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
         String identificacion = txtIdentificacion.getText();
         empleado = lista.buscar(identificacion);
