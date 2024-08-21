@@ -35,10 +35,10 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         lista = new ListaPaquetes();
         btnAlmacen.setSelected(true);
         btnAlmacen.setEnabled(false);
-            btnCancelado.setEnabled(false);
-            btnDespachado.setEnabled(false);
-            btnEntregado.setEnabled(false);
-            
+        btnCancelado.setEnabled(false);
+        btnDespachado.setEnabled(false);
+        btnEntregado.setEnabled(false);
+
     }
 
     private void Limpiar() {
@@ -52,7 +52,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         this.buttonGroup1.clearSelection();
     }
 
-    private void deshabilitar(){
+    private void deshabilitar() {
         this.txtDescripcion.setEditable(false);
         this.txtDestinatario.setEditable(false);
         this.txtIdDestinatario.setEditable(false);
@@ -60,6 +60,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         this.txtPeso.setEditable(false);
         this.txtRemitente.setEditable(false);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -345,8 +346,8 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 15, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -358,7 +359,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
                 .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLista, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(114, 114, 114))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,15 +367,15 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(33, 33, 33))
+                    .addComponent(btnLista, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -410,17 +411,20 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
 
             Estado estado = paquete.getEstado();
 
-           
             switch (estado) {
-                case ALMACEN -> btnAlmacen.setSelected(true);
-                case CANCELADO -> btnCancelado.setSelected(true);
-                case DESPACHADO -> btnDespachado.setSelected(true);
-                case ENTREGADO -> btnEntregado.setSelected(true);
-                
+                case ALMACEN ->
+                    btnAlmacen.setSelected(true);
+                case CANCELADO ->
+                    btnCancelado.setSelected(true);
+                case DESPACHADO ->
+                    btnDespachado.setSelected(true);
+                case ENTREGADO ->
+                    btnEntregado.setSelected(true);
+
             }
-            
-           deshabilitar();
-            
+
+            deshabilitar();
+
         } else {
             JOptionPane.showMessageDialog(this, "El paquete con el código " + codigo + " no existe");
         }
@@ -428,7 +432,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        FrmActuPaquetes frm = new FrmActuPaquetes(null, true,lista);
+        FrmActuPaquetes frm = new FrmActuPaquetes(null, true, lista);
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
     }//GEN-LAST:event_btnActualizarActionPerformed
@@ -445,10 +449,13 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        if (txtCodigo.getText() != "" || txtDescripcion.getText() != "" || txtRemitente.getText() != ""
-                || txtIdRemitente.getText() != "" || txtPeso.getText() != ""
-                || txtDestinatario.getText() != "" || txtIdDestinatario.getText() != "") {
-         
+        if (txtCodigo.getText().isEmpty() || txtDescripcion.getText().isEmpty() || txtRemitente.getText().isEmpty()
+                || txtIdRemitente.getText().isEmpty() || txtPeso.getText().isEmpty()
+                || txtDestinatario.getText().isEmpty() || txtIdDestinatario.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Faltan campos por llenar, por favor completarlos.");
+        } else {
+
             String codigo = txtCodigo.getText();
             String descripcion = txtDescripcion.getText();
             String destinatari = txtDestinatario.getText();
@@ -456,20 +463,18 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
             String remitent = txtRemitente.getText();
             String idRemitente = txtIdRemitente.getText();
             Double peso = Double.valueOf(txtPeso.getText());
-            
-            if (lista.buscar(codigo) != null) { 
-            JOptionPane.showMessageDialog(this, "No es posible modificarlo. El código " + codigo + " ya existe.");
-            return; 
-        }
+            if (lista.buscar(codigo) != null) {
+                JOptionPane.showMessageDialog(this, "No es posible modificarlo. El código " + codigo + " ya existe.");
+               Limpiar();
+                return;
+                
+            }
             destinatario = new Persona(idDestinatario, destinatari);
             remitente = new Persona(idRemitente, remitent);
             paquete = new Paquete(codigo, descripcion, peso, destinatario, remitente);
             lista.agregar(codigo, paquete);
             JOptionPane.showMessageDialog(this, "Paquete agregado correctamente");
-            Limpiar(); 
-        } else {
-            /////////////////////////////////////////////////////// no salta bien error
-            JOptionPane.showMessageDialog(this, "Faltan campos por llenar, porfavor completarlos");
+            Limpiar();
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -486,11 +491,11 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAlmacenActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-         Limpiar();
+        Limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaActionPerformed
-        FrmListaPaquetes frm=new FrmListaPaquetes(null,true,lista);
+        FrmListaPaquetes frm = new FrmListaPaquetes(null, true, lista);
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
     }//GEN-LAST:event_btnListaActionPerformed
@@ -528,7 +533,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtRemitente;
     // End of variables declaration//GEN-END:variables
 
- public void ajustarBtn(final javax.swing.JButton cosa, final String ubicacion) {
+    public void ajustarBtn(final javax.swing.JButton cosa, final String ubicacion) {
         final ImageIcon image = new ImageIcon(getClass().getResource(ubicacion));
 
         cosa.addHierarchyListener(new HierarchyListener() {

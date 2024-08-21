@@ -20,8 +20,12 @@ public class ListaPaquetes {
         this.paquetes = new HashMap<>();
     }
 
-    public void agregar(String codigo, Paquete objecto) {
+    public boolean agregar(String codigo, Paquete objecto) {
+      if(paquetes.containsKey(codigo)){
+          return false;
+      }
         this.paquetes.put(codigo.toUpperCase(), objecto);
+        return true;
     }
 
     public Paquete buscar(String objecto) {
@@ -31,14 +35,14 @@ public class ListaPaquetes {
         return null;
     }
 
-    public void eliminar(String codigo) throws IllegalArgumentException {
+    public boolean eliminar(String codigo) throws IllegalArgumentException {
         Paquete paquete = paquetes.get(codigo.toUpperCase());
         if (paquete != null && paquete.getEstado() == Estado.ALMACEN) {
             paquetes.remove(codigo.toUpperCase());
+            return true;
         } else {
             throw new IllegalArgumentException("No se puede eliminar un paquete en el Estado Actual [Despachado] ");
         }
-
     }
 
     public boolean actualizar(String codigo, String descripcion, Persona destinatario) {
