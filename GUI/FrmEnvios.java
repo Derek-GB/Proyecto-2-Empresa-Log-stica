@@ -6,11 +6,15 @@ package GUI;
 
 import Envios.ListaEnvios;
 import Paquetes.ListaPaquetes;
+import Paquetes.Paquete;
+import Personas.Cliente;
 import Personas.ListaCliente;
 import RutasEntrega.ListaRutaEntrega;
+import RutasEntrega.RutaEntrega;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +26,7 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
     private ListaPaquetes paquetes;
     private ListaCliente clientes;
     private ListaRutaEntrega rutas;
+    private int numeroPedido;
 
     /**
      * Creates new form FrmEnvios
@@ -30,13 +35,15 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
      * @param clientes
      * @param paquetes
      * @param rutas
+     * @param numeroEnvio
      */
-    public FrmEnvios(ListaEnvios lista, ListaCliente clientes, ListaPaquetes paquetes, ListaRutaEntrega rutas) {
+    public FrmEnvios(ListaEnvios lista, ListaCliente clientes, ListaPaquetes paquetes, ListaRutaEntrega rutas, int numeroEnvio) {
         initComponents();
         this.lista = lista;
         this.clientes = clientes;
         this.paquetes = paquetes;
         this.rutas = rutas;
+        this.numeroPedido = numeroEnvio;
     }
 
     /**
@@ -56,14 +63,12 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
         txtNuevo = new javax.swing.JLabel();
         txtCliente = new javax.swing.JComboBox<>();
         txtPaquete = new javax.swing.JComboBox<>();
-        txtPeso = new javax.swing.JFormattedTextField();
-        jLabel5 = new javax.swing.JLabel();
         txtNumero = new javax.swing.JFormattedTextField();
         txtRuta = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtPeso1 = new javax.swing.JFormattedTextField();
-        txtPeso2 = new javax.swing.JFormattedTextField();
+        txtFechaEntrega = new javax.swing.JFormattedTextField();
+        txtFechaEnvio = new javax.swing.JFormattedTextField();
         btnLimpiar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         btnFinalizar = new javax.swing.JButton();
@@ -103,12 +108,6 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
             }
         });
 
-        txtPeso.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        txtPeso.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel5.setText("Peso");
-
         txtNumero.setEditable(false);
         txtNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtNumero.setText("0");
@@ -133,13 +132,13 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
         jLabel7.setText("Fecha Entrega");
         jLabel7.setEnabled(false);
 
-        txtPeso1.setEditable(false);
-        txtPeso1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        txtPeso1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtFechaEntrega.setEditable(false);
+        txtFechaEntrega.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        txtFechaEntrega.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
-        txtPeso2.setEditable(false);
-        txtPeso2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        txtPeso2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtFechaEnvio.setEditable(false);
+        txtFechaEnvio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        txtFechaEnvio.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,18 +162,14 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPeso2, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))))
+                            .addComponent(txtFechaEnvio, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtPaquete, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtPeso1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPeso, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtFechaEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+                .addGap(113, 113, 113)
                 .addComponent(txtNuevo)
                 .addContainerGap())
         );
@@ -186,13 +181,11 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)
-                    .addComponent(txtNuevo)
-                    .addComponent(jLabel5))
+                    .addComponent(txtNuevo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNumero))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -202,8 +195,8 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
                 .addGap(5, 5, 5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPeso1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPeso2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFechaEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -304,11 +297,25 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPaqueteActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-
+        limpiarCampos();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
+        Cliente cliente = (Cliente) txtCliente.getSelectedItem();
+        Paquete paquete = (Paquete) txtPaquete.getSelectedItem();
+        RutaEntrega ruta = (RutaEntrega) txtRuta.getSelectedItem();
+        
+        if (cliente == null || paquete == null || ruta == null){
+            JOptionPane.showMessageDialog(this, "Se han dejado campos en blanco");
+            return;
+        } 
+        
+        double pesoKg = paquete.getPeso();
+        try{
+            lista.registrarEnvio(cliente, paquete, ruta, pesoKg);
+        } catch (IllegalArgumentException i) {
+            JOptionPane.showMessageDialog(this, i.getMessage());
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
@@ -339,18 +346,16 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> txtCliente;
+    private javax.swing.JFormattedTextField txtFechaEntrega;
+    private javax.swing.JFormattedTextField txtFechaEnvio;
     private javax.swing.JLabel txtNuevo;
     private javax.swing.JFormattedTextField txtNumero;
     private javax.swing.JComboBox<String> txtPaquete;
-    private javax.swing.JFormattedTextField txtPeso;
-    private javax.swing.JFormattedTextField txtPeso1;
-    private javax.swing.JFormattedTextField txtPeso2;
     private javax.swing.JComboBox<String> txtRuta;
     // End of variables declaration//GEN-END:variables
 
@@ -363,10 +368,12 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
     }
 
     private void limpiarCampos() {
-//        txtNumero.setText("");
-//        txtCliente.setText("");
-//        txtMonto.setText("");
-//        txtDescripcion.setText("");
+        txtNumero.setText("");
+        txtCliente.setSelectedIndex(-1);
+        txtPaquete.setSelectedIndex(-1);
+        txtRuta.setSelectedIndex(-1);
+        txtFechaEnvio.setText("");
+        txtFechaEntrega.setText("");
     }
     
     private void ajustarBotones() {
