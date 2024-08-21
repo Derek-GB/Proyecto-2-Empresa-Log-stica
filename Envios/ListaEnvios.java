@@ -8,6 +8,7 @@ import Paquetes.Paquete;
 import Personas.Cliente;
 import RutasEntrega.RutaEntrega;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -61,4 +62,8 @@ public class ListaEnvios {
         return false;
     }
 
+    public ListaEnvios() {
+        this.envios = new LinkedList<>();
+    }
+    
 }

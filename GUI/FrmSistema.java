@@ -7,6 +7,7 @@ package GUI;
 import Envios.ListaEnvios;
 import Paquetes.ListaPaquetes;
 import Personas.ListaCliente;
+import Personas.ListaEmpleado;
 import RutasEntrega.ListaRutaEntrega;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -20,11 +21,11 @@ import javax.swing.ImageIcon;
  * @author Fernando
  */
 public class FrmSistema extends javax.swing.JFrame {
-private ListaEnvios envios;
-private ListaPaquetes paquetes;
-private ListaCliente clientes;
-private ListaRutaEntrega rutas;
-private ListaRutaEntrega Empleados;
+private ListaEnvios envios = new ListaEnvios();
+private ListaPaquetes paquetes = new ListaPaquetes();
+private ListaCliente clientes = new ListaCliente();
+private ListaRutaEntrega rutas = new ListaRutaEntrega();
+private ListaEmpleado Empleados = new ListaEmpleado();
 private int numeroEnvio;
 
     /**

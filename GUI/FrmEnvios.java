@@ -4,14 +4,19 @@
  */
 package GUI;
 
+import Envios.Envio;
 import Envios.ListaEnvios;
 import Paquetes.ListaPaquetes;
 import Paquetes.Paquete;
 import Personas.Cliente;
 import Personas.ListaCliente;
+import Personas.Persona;
 import RutasEntrega.ListaRutaEntrega;
 import RutasEntrega.RutaEntrega;
 import java.awt.Image;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Iterator;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -44,6 +49,14 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
         this.paquetes = paquetes;
         this.rutas = rutas;
         this.numeroPedido = numeroEnvio;
+        prueba();
+        inicializarComboBoxs();
+    }
+    
+    public void prueba(){
+        clientes.agregar(new Cliente(LocalDate.now(), "gvuirj", "vgr", "tgvrf", "hbtgvrf"));
+        paquetes.agregar("fd", new Paquete("trfed", "frdes", 3.3, new Persona(), new Persona()));
+        rutas.agregar(new RutaEntrega("dee", "derfd", "aaaaaaaa", new HashSet<>()));
     }
 
     /**
@@ -72,10 +85,11 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
         btnLimpiar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         btnFinalizar = new javax.swing.JButton();
+        btnEntregar = new javax.swing.JButton();
+        btnDespachar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        btnEnlistar = new javax.swing.JButton();
-        btnEnlistar1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        btnEnlistar = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Administracion Envios");
@@ -224,24 +238,42 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
             }
         });
 
+        btnEntregar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnEntregar.setText("Entregar");
+        btnEntregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntregarActionPerformed(evt);
+            }
+        });
+
+        btnDespachar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnDespachar.setText("Despachar");
+        btnDespachar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDespacharActionPerformed(evt);
+            }
+        });
+
         btnCancelar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnCancelar.setText("Entregar");
+        btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
 
-        btnEnlistar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnEnlistar.setText("Despachar");
-
-        btnEnlistar1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnEnlistar1.setText("Cancelar");
-
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Envios");
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnEnlistar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnEnlistar.setText("Enlistar");
+        btnEnlistar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnlistarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -259,11 +291,13 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEntregar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDespachar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEnlistar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEnlistar1)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -278,10 +312,11 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFinalizar)
                     .addComponent(btnLimpiar)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnEnlistar)
+                    .addComponent(btnEntregar)
+                    .addComponent(btnDespachar)
                     .addComponent(btnAgregar)
-                    .addComponent(btnEnlistar1))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnEnlistar))
                 .addContainerGap())
         );
 
@@ -298,6 +333,7 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiarCampos();
+        txtNumero.setText(String.valueOf(numeroPedido));
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -316,15 +352,21 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
         } catch (IllegalArgumentException i) {
             JOptionPane.showMessageDialog(this, i.getMessage());
         }
+        System.out.println(lista.toString());
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-        
+        //añadir una ventana adicional para la busqueda
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-   
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    private void btnEntregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntregarActionPerformed
+        Envio envio = lista.buscar(Integer.parseInt(txtNumero.getText()));
+        if (envio == null){
+            JOptionPane.showMessageDialog(this, "El numero de envio es invalido");
+            return;
+        }
+        envio.finalizar();
+    }//GEN-LAST:event_btnEntregarActionPerformed
 
     private void txtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActionPerformed
         // TODO add your handling code here:
@@ -334,12 +376,35 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRutaActionPerformed
 
+    private void btnDespacharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespacharActionPerformed
+        Envio envio = lista.buscar(Integer.parseInt(txtNumero.getText()));
+        if (envio == null){
+            JOptionPane.showMessageDialog(this, "El numero de envio es invalido");
+            return;
+        }
+        envio.getPaquete().despachar();
+    }//GEN-LAST:event_btnDespacharActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        Envio envio = lista.buscar(Integer.parseInt(txtNumero.getText()));
+        if (envio == null){
+            JOptionPane.showMessageDialog(this, "El numero de envio es invalido");
+            return;
+        }
+        envio.getPaquete().cancelar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnEnlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnlistarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEnlistarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnDespachar;
     private javax.swing.JButton btnEnlistar;
-    private javax.swing.JButton btnEnlistar1;
+    private javax.swing.JButton btnEntregar;
     private javax.swing.JButton btnFinalizar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
@@ -359,12 +424,26 @@ public class FrmEnvios extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> txtRuta;
     // End of variables declaration//GEN-END:variables
 
+    private void inicializarComboBoxs(){
+        cargarComboBox(txtCliente, clientes.getClientes());
+        cargarComboBox(txtPaquete, paquetes.getPaquetes());
+        cargarComboBox(txtRuta, rutas.getRutas());
+    }
+    
+    private void cargarComboBox(javax.swing.JComboBox comboBox, Iterator iterator){
+        int cont = 0;
+        while(iterator.hasNext()){
+            comboBox.addItem(iterator.next());
+        }
+    }
+    
+    
     private void iterarBotones(boolean agregar, boolean listar, boolean nuevo, boolean atender, boolean cancelar) {
         btnAgregar.setEnabled(agregar);
-        btnEnlistar.setEnabled(listar);
+        btnDespachar.setEnabled(listar);
         btnLimpiar.setEnabled(nuevo);
         btnFinalizar.setEnabled(atender);
-        btnCancelar.setEnabled(cancelar);
+        btnEntregar.setEnabled(cancelar);
     }
 
     private void limpiarCampos() {

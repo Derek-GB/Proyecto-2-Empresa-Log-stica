@@ -73,5 +73,12 @@ public class Envio {
         this.fechaEnvio = null;
         this.fechaEntrega = null;
     }
+
+    @Override
+    public String toString() {
+        return "Envio{" + "numeroEnvio=" + numeroEnvio + ", cliente=" + cliente + ", paquete=" + paquete + ", ruta=" + ruta + ", fechaEnvio=" + fechaEnvio + ", fechaEntrega=" + fechaEntrega + ", precio=" + precio + '}';
+    }
+    
+    
     
 }
