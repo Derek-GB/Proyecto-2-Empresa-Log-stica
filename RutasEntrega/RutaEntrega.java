@@ -55,7 +55,7 @@ public class RutaEntrega {
 
     @Override
     public String toString() {
-        return "RutaEntrega{" + "codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", listaDestinos=" + listaDestinos + '}';
+        return codigo + " - " + nombre;
     }
     
     

@@ -468,9 +468,9 @@ public class FrmEmpleados extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaActionPerformed
-//        FrmListaClientes frm=new FrmListaClientes(null,true,lista);
-//        frm.setLocationRelativeTo(null);
-//        frm.setVisible(true);
+       FrmListaEmpleados frm=new FrmListaEmpleados(null,true,lista);
+       frm.setLocationRelativeTo(null); 
+       frm.setVisible(true);
     }//GEN-LAST:event_btnListaActionPerformed
 
     private void cbxPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPuestoActionPerformed

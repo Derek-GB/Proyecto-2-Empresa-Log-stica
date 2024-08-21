@@ -91,7 +91,7 @@ public class Paquete {
 
     @Override
     public String toString() {
-        return "Paquete " + "codigo = " + codigo + ", descripcion = " + descripcion + ", peso = " + peso + ", remitente =" + remitente + ", destinatario = " + destinatario + ", estado = " + estado;
+        return codigo + " - " + descripcion;
     }
     
     

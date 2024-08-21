@@ -24,6 +24,8 @@ private ListaEnvios envios;
 private ListaPaquetes paquetes;
 private ListaCliente clientes;
 private ListaRutaEntrega rutas;
+private ListaRutaEntrega Empleados;
+private int numeroEnvio;
 
     /**
      * Creates new form FrmSistema
@@ -32,6 +34,7 @@ private ListaRutaEntrega rutas;
         initComponents();
         ajustarImagenes();
         centrar();
+        numeroEnvio = 0;
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
@@ -302,7 +305,7 @@ private ListaRutaEntrega rutas;
     }//GEN-LAST:event_btnPaquetesActionPerformed
 
     private void btnEnviosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviosActionPerformed
-        FrmEnvios frm = new FrmEnvios(envios, clientes, paquetes, rutas);
+        FrmEnvios frm = new FrmEnvios(envios, clientes, paquetes, rutas, numeroEnvio);
         this.deskMenu.add(frm);
          frm.setLocation((this.deskMenu.getWidth()-frm.getWidth())/2, (this.deskMenu.getHeight()-frm.getHeight())/2);
         frm.setVisible(true);

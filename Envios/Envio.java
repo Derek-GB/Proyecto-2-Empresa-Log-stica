@@ -54,6 +54,11 @@ public class Envio {
         return 900 + (pesoKg * 1200);
     }
     
+    public void finalizar(){
+        fechaEntrega = LocalDate.now();
+        paquete.entregar();
+    }
+    
     protected Envio(int numeroEnvio, Cliente cliente, Paquete paquete, RutaEntrega ruta, double pesoKg) {
         this.numeroEnvio = numeroEnvio;
         this.cliente = cliente;
