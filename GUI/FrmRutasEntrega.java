@@ -26,9 +26,9 @@ public class FrmRutasEntrega extends javax.swing.JInternalFrame {
     /**
      * Creates new form GUIPaquetes
      */
-    public FrmRutasEntrega() {
+    public FrmRutasEntrega(ListaRutaEntrega lista) {
         initComponents();
-        lista = new ListaRutaEntrega();
+        this.lista = lista;
         ruta = new RutaEntrega();
         ajustarImagenes();
        
@@ -376,7 +376,7 @@ public class FrmRutasEntrega extends javax.swing.JInternalFrame {
         });
     }
     
-     public void ajustarImagenes() {
+     private void ajustarImagenes() {
         ajustarBtn(btnActualizar, "/Imagenes/actualizar.png");
         ajustarBtn(BtnBuscar, "/Imagenes/buscar.png");
         ajustarBtn(BtnEliminar, "/Imagenes/eliminar.png");

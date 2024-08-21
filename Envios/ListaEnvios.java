@@ -18,10 +18,14 @@ import java.util.Queue;
 public class ListaEnvios {
 
     private Queue<Envio> envios;
-    private int contadorEnvios = 0;
+    private int contadorEnvios;
 
     public Iterator<Envio> getEnvios() {
         return envios.iterator();
+    }
+    
+    public int getContador(){
+        return this.contadorEnvios;
     }
 
     public void registrarEnvio(Cliente cliente, Paquete paquete, RutaEntrega ruta, double pesoKg) throws IllegalArgumentException {
@@ -64,6 +68,7 @@ public class ListaEnvios {
 
     public ListaEnvios() {
         this.envios = new LinkedList<>();
+        this.contadorEnvios = 0;
     }
     
 }

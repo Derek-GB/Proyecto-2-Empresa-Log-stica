@@ -21,22 +21,29 @@ import javax.swing.ImageIcon;
  * @author Fernando
  */
 public class FrmSistema extends javax.swing.JFrame {
-private ListaEnvios envios = new ListaEnvios();
-private ListaPaquetes paquetes = new ListaPaquetes();
-private ListaCliente clientes = new ListaCliente();
-private ListaRutaEntrega rutas = new ListaRutaEntrega();
-private ListaEmpleado Empleados = new ListaEmpleado();
-private int numeroEnvio;
+
+    private static FrmSistema instancia;
+    private ListaEnvios envios = new ListaEnvios();
+    private ListaPaquetes paquetes = new ListaPaquetes();
+    private ListaCliente clientes = new ListaCliente();
+    private ListaRutaEntrega rutas = new ListaRutaEntrega();
+    private ListaEmpleado Empleados = new ListaEmpleado();
 
     /**
      * Creates new form FrmSistema
      */
-    public FrmSistema() {
+    private FrmSistema() {
         initComponents();
         ajustarImagenes();
         centrar();
-        numeroEnvio = 0;
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+
+    public static FrmSistema getInstance() {
+        if (instancia == null) {
+            instancia = new FrmSistema();
+        }
+        return instancia;
     }
 
     /**
@@ -71,10 +78,11 @@ private int numeroEnvio;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmSistema().setVisible(true);
+                FrmSistema.getInstance().setVisible(true);
             }
         });
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -274,16 +282,16 @@ private int numeroEnvio;
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        FrmRutasEntrega frm = new FrmRutasEntrega();
+        FrmRutasEntrega frm = new FrmRutasEntrega(rutas);
         this.deskMenu.add(frm);
-        frm.setLocation((this.deskMenu.getWidth()-frm.getWidth())/2, (this.deskMenu.getHeight()-frm.getHeight())/2);
+        frm.setLocation((this.deskMenu.getWidth() - frm.getWidth()) / 2, (this.deskMenu.getHeight() - frm.getHeight()) / 2);
         frm.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        FrmPaquetes frm = new FrmPaquetes();
+        FrmPaquetes frm = new FrmPaquetes(paquetes);
         this.deskMenu.add(frm);
-         frm.setLocation((this.deskMenu.getWidth()-frm.getWidth())/2, (this.deskMenu.getHeight()-frm.getHeight())/2);
+        frm.setLocation((this.deskMenu.getWidth() - frm.getWidth()) / 2, (this.deskMenu.getHeight() - frm.getHeight()) / 2);
         frm.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
@@ -292,44 +300,43 @@ private int numeroEnvio;
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
-         FrmEmpleados frm = new FrmEmpleados();
+        FrmEmpleados frm = new FrmEmpleados();
         this.deskMenu.add(frm);
-         frm.setLocation((this.deskMenu.getWidth()-frm.getWidth())/2, (this.deskMenu.getHeight()-frm.getHeight())/2);
+        frm.setLocation((this.deskMenu.getWidth() - frm.getWidth()) / 2, (this.deskMenu.getHeight() - frm.getHeight()) / 2);
         frm.setVisible(true);
     }//GEN-LAST:event_btnEmpleadosActionPerformed
 
     private void btnPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaquetesActionPerformed
-        FrmPaquetes frm = new FrmPaquetes();
+        FrmPaquetes frm = new FrmPaquetes(paquetes);
         this.deskMenu.add(frm);
-         frm.setLocation((this.deskMenu.getWidth()-frm.getWidth())/2, (this.deskMenu.getHeight()-frm.getHeight())/2);
+        frm.setLocation((this.deskMenu.getWidth() - frm.getWidth()) / 2, (this.deskMenu.getHeight() - frm.getHeight()) / 2);
         frm.setVisible(true);
     }//GEN-LAST:event_btnPaquetesActionPerformed
 
     private void btnEnviosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviosActionPerformed
-        FrmEnvios frm = new FrmEnvios(envios, clientes, paquetes, rutas, numeroEnvio);
+        FrmEnvios frm = new FrmEnvios(envios, clientes, paquetes, rutas);
         this.deskMenu.add(frm);
-         frm.setLocation((this.deskMenu.getWidth()-frm.getWidth())/2, (this.deskMenu.getHeight()-frm.getHeight())/2);
+        frm.setLocation((this.deskMenu.getWidth() - frm.getWidth()) / 2, (this.deskMenu.getHeight() - frm.getHeight()) / 2);
         frm.setVisible(true);
     }//GEN-LAST:event_btnEnviosActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        FrmCliente frm = new FrmCliente();
+        FrmCliente frm = new FrmCliente(clientes);
         this.deskMenu.add(frm);
-        frm.setLocation((this.deskMenu.getWidth()-frm.getWidth())/2, (this.deskMenu.getHeight()-frm.getHeight())/2);
+        frm.setLocation((this.deskMenu.getWidth() - frm.getWidth()) / 2, (this.deskMenu.getHeight() - frm.getHeight()) / 2);
         frm.setVisible(true);
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRutasActionPerformed
-        FrmRutasEntrega frm = new FrmRutasEntrega();
+        FrmRutasEntrega frm = new FrmRutasEntrega(rutas);
         this.deskMenu.add(frm);
-        frm.setLocation((this.deskMenu.getWidth()-frm.getWidth())/2, (this.deskMenu.getHeight()-frm.getHeight())/2);
+        frm.setLocation((this.deskMenu.getWidth() - frm.getWidth()) / 2, (this.deskMenu.getHeight() - frm.getHeight()) / 2);
         frm.setVisible(true);
     }//GEN-LAST:event_btnRutasActionPerformed
 
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Administrar;
@@ -356,24 +363,26 @@ private int numeroEnvio;
         int y = (screenSize.height - this.getHeight()) / 2;
         this.setLocation(x, y);
     }
-     private void ajustarTxt(String ubicacion, javax.swing.JLabel cosa) {
+
+    private void ajustarTxt(String ubicacion, javax.swing.JLabel cosa) {
         ImageIcon image = new ImageIcon(getClass().getResource(ubicacion));
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(cosa.getWidth(), cosa.getHeight(), Image.SCALE_DEFAULT));
         cosa.setIcon(icon);
     }
-     
+
     private void ajustarBtn(String ubicacion, javax.swing.JButton cosa) {
         ImageIcon image = new ImageIcon(getClass().getResource(ubicacion));
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(cosa.getWidth(), cosa.getHeight(), Image.SCALE_DEFAULT));
         cosa.setIcon(icon);
     }
-    
-     private void ajustarImagenes() {
+
+    private void ajustarImagenes() {
         ajustarTxt("/Imagenes/camion.png", txtCamion);
         ajustarBtn("/Imagenes/rutas.png", btnRutas);
         ajustarBtn("/Imagenes/cliente.png", btnClientes);
         ajustarBtn("/Imagenes/empleado.png", btnEmpleados);
         ajustarBtn("/Imagenes/envio.png", btnEnvios);
         ajustarBtn("/Imagenes/paquete.png", btnPaquetes);
-     }
+    }
+
 }

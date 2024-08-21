@@ -12,7 +12,6 @@ import java.awt.event.HierarchyListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -27,10 +26,11 @@ public class FrmCliente extends javax.swing.JInternalFrame {
     private ListaCliente lista;
     /**
      * Creates new form FrmCliente
+     * @param clientes
      */
-    public FrmCliente() {
+    public FrmCliente(ListaCliente clientes) {
         initComponents();
-        lista = new ListaCliente();
+        lista = clientes;
         cliente = new Cliente();
         ajustarImagenes();
     }
@@ -462,7 +462,7 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         });
     }
     
-    public void ajustarImagenes() {
+    private void ajustarImagenes() {
         ajustarBtn(btnActualizar, "/Imagenes/actualizar.png");
         ajustarBtn(BtnBuscar, "/Imagenes/buscar.png");
         ajustarBtn(BtnEliminar, "/Imagenes/eliminar.png");

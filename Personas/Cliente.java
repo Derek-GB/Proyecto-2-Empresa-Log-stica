@@ -36,7 +36,7 @@ public class Cliente extends PersonaDetallada{
 
     @Override
     public String toString() {
-        return getIdentificacion() + " - " + getNombre();
+        return "Id: " + getIdentificacion() + " - " + getNombre();
     }
     
     

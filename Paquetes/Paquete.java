@@ -91,7 +91,7 @@ public class Paquete {
 
     @Override
     public String toString() {
-        return codigo + " - " + descripcion;
+        return "Id: " + codigo + " \\\\ " + remitente.getIdentificacion() + " : " + remitente.getNombre() + " \\\\ " + destinatario.getIdentificacion() + " : " + destinatario.getNombre();
     }
     
     

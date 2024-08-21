@@ -55,7 +55,7 @@ public class RutaEntrega {
 
     @Override
     public String toString() {
-        return codigo + " - " + nombre;
+        return "Id: " + codigo + " - " + nombre;
     }
     
     

@@ -28,11 +28,12 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form GUIPaquetes
+     * @param lista
      */
-    public FrmPaquetes() {
+    public FrmPaquetes(ListaPaquetes lista) {
         initComponents();
         ajustarImagenes();
-        lista = new ListaPaquetes();
+        this.lista = lista;
         btnAlmacen.setSelected(true);
         btnAlmacen.setEnabled(false);
         btnCancelado.setEnabled(false);
@@ -549,7 +550,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         });
     }
 
-    public void ajustarImagenes() {
+    private void ajustarImagenes() {
         ajustarBtn(BtnEliminar, "/Imagenes/Eliminar.png");
         ajustarBtn(btnAgregar, "/Imagenes/guardar.png");
         ajustarBtn(BtnBuscar, "/Imagenes/Buscar.png");
