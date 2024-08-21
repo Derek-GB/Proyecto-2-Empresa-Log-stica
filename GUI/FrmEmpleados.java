@@ -402,11 +402,32 @@ public class FrmEmpleados extends javax.swing.JInternalFrame {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             String fechaNacimientoStr = empleado.getFechaNacimiento().format(formatter);
             txtFechaNacimiento.setText(fechaNacimientoStr);
-            cbxPuesto.setSelectedItem(empleado.getPuesto());
+         switch (empleado.getPuesto()) {
+             case PuestoEnum.Mensajero :
+            cbxPuesto.setSelectedItem("Mensajero");
+            break;
+            case PuestoEnum.Administrador :
+            cbxPuesto.setSelectedItem("Administrador");
+            break;
+            case PuestoEnum.Conductor :
+            cbxPuesto.setSelectedItem("Conductor");
+            break;
+            case PuestoEnum.Despachador :
+            cbxPuesto.setSelectedItem("Despachador");
+            break;
+            case PuestoEnum.Gerente :
+            cbxPuesto.setSelectedItem("Mensajero");
+            break;
+            case PuestoEnum.Recepcionista :
+            cbxPuesto.setSelectedItem("Recepcionista");
+            break;
+        
+        default:
+            cbxPuesto.setSelectedItem("");
+            break;
+    }
             txtSalario.setText(String.valueOf(empleado.getSalario()));
             
-            
-
         } else {
             JOptionPane.showMessageDialog(this, "El empleado con la identificacion " + identificacion + " no existe");
         }
