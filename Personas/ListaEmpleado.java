@@ -6,6 +6,7 @@ package Personas;
 
 import Listas.Lista;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -58,5 +59,8 @@ public class ListaEmpleado implements Lista <Empleado> {
         empleados.removeIf(empleado -> empleado.getIdentificacion().equals(identificacion));
     }
     
+     public Iterator<Empleado> getEmpleados() {
+        return empleados.iterator();
+    }
     
 }
