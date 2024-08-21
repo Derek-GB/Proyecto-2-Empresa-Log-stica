@@ -34,7 +34,7 @@ public class Empleado extends PersonaDetallada {
 
     public Empleado(PuestoEnum puesto, LocalDate fechaNacimiento, String correo, String telefono, String identificacion, String nombre) {
         super(fechaNacimiento, correo, telefono, identificacion, nombre);
-        this.salario = salario;
+        this.puesto = puesto;
         this.salario = puesto.getSalario();
     }
 
