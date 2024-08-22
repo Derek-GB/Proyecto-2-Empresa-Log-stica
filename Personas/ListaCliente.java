@@ -4,10 +4,13 @@
  */
 package Personas;
 
+import Envios.Envio;
+import Envios.ListaEnvios;
 import Listas.Lista;
 import Paquetes.Estado;
 import Paquetes.ListaPaquetes;
 import Paquetes.Paquete;
+import Personas.Cliente;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,15 +22,16 @@ import java.util.List;
 public class ListaCliente {
     
     private ArrayList<Cliente> Clientes;
-    private ListaPaquetes listaPaquetes;
+    private ListaEnvios listaEnvios;
+   
 
     
     private List<String> obtenerCodigosPaquetes(Cliente cliente) {
         return new ArrayList<>();
     }
-    public ListaCliente() {
+    public ListaCliente(ListaEnvios envio) {
         this.Clientes = new ArrayList<>();
-        this.listaPaquetes = listaPaquetes;
+        this.listaEnvios=envio;
     }
 
     
@@ -51,24 +55,21 @@ public class ListaCliente {
         return null; 
     }
     
-     public boolean tienePaqueteEnTransito(Cliente cliente){
-      boolean tienePaqueteEnTransito = false;
-      List<String> codigosPaquetes = obtenerCodigosPaquetes(cliente); 
+    private boolean tienePaqueteEnTransito(Cliente cliente) {
+       Iterator<Envio> iterador = listaEnvios.getEnvios(); 
 
-        for (String codigo : codigosPaquetes) {
-            Paquete paquete = listaPaquetes.buscar(codigo);
-            if (paquete != null && paquete.getEstado() == Estado.DESPACHADO) {
-                tienePaqueteEnTransito = true;
-                break;
-            }
+    while (iterador.hasNext()) {
+        Envio envio = iterador.next(); 
+        Paquete paquete = envio.getPaquete();
+
+        if (envio.getCliente().equals(cliente) && paquete.getEstado()==Estado.DESPACHADO) { 
+            return true; 
         }
+    }
 
-        return tienePaqueteEnTransito;
-    
-     }
+    return false; 
+    }
 
- 
-//    Queda pendiente la excepcion
     public void eliminar(String identificacion)throws ClienteConPaquetesEnTransitoException {
         Cliente cliente = buscar(identificacion);
         if (cliente == null) {

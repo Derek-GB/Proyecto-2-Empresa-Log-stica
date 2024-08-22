@@ -14,6 +14,8 @@ import Personas.Persona;
 import RutasEntrega.ListaRutaEntrega;
 import RutasEntrega.RutaEntrega;
 import java.awt.Image;
+import java.awt.event.HierarchyEvent;
+import java.awt.event.HierarchyListener;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -48,6 +50,7 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
         this.paquetes = paquetes;
         this.rutas = rutas;
         actualizarComboBoxs();
+        ajustarBotones();
     }
 
     private void mostrarFechas(boolean permitir) {
@@ -248,7 +251,7 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
+                            .addComponent(txtNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtCliente, 0, 157, Short.MAX_VALUE)
@@ -278,7 +281,7 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelEnvio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtFechaEnvio, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+                            .addComponent(txtFechaEnvio))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -338,7 +341,8 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
         );
 
         btnLimpiar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setToolTipText("Limpiar");
+        btnLimpiar.setPreferredSize(new java.awt.Dimension(56, 48));
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
@@ -346,7 +350,7 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
         });
 
         btnAgregar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnAgregar.setText("Agregar");
+        btnAgregar.setToolTipText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -354,7 +358,8 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
         });
 
         btnBuscar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnBuscar.setText("Buscar");
+        btnBuscar.setToolTipText("Buscar");
+        btnBuscar.setPreferredSize(new java.awt.Dimension(56, 48));
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -362,7 +367,8 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
         });
 
         btnEntregar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnEntregar.setText("Entregar");
+        btnEntregar.setToolTipText("Entregar");
+        btnEntregar.setPreferredSize(new java.awt.Dimension(58, 48));
         btnEntregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntregarActionPerformed(evt);
@@ -370,7 +376,8 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
         });
 
         btnDespachar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnDespachar.setText("Despachar");
+        btnDespachar.setToolTipText("Despachar");
+        btnDespachar.setPreferredSize(new java.awt.Dimension(56, 48));
         btnDespachar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDespacharActionPerformed(evt);
@@ -378,7 +385,8 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
         });
 
         btnCancelar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setToolTipText("Cancelar");
+        btnCancelar.setPreferredSize(new java.awt.Dimension(56, 48));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -391,7 +399,8 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnEnlistar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnEnlistar.setText("Enlistar");
+        btnEnlistar.setToolTipText("Listar");
+        btnEnlistar.setPreferredSize(new java.awt.Dimension(56, 48));
         btnEnlistar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnlistarActionPerformed(evt);
@@ -408,20 +417,21 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLimpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEntregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDespachar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEnlistar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(77, 77, 77)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEntregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDespachar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEnlistar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -431,16 +441,16 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar)
-                    .addComponent(btnLimpiar)
-                    .addComponent(btnEntregar)
-                    .addComponent(btnDespachar)
-                    .addComponent(btnAgregar)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnEnlistar))
-                .addContainerGap())
+                    .addComponent(btnEnlistar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDespachar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEntregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -560,7 +570,9 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEnlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnlistarActionPerformed
-        // TODO add your handling code here:
+     FrmListaEnvios frm=new FrmListaEnvios(null,true,lista);
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
     }//GEN-LAST:event_btnEnlistarActionPerformed
 
     private void btnAgregarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarRutaActionPerformed
@@ -684,17 +696,30 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
     }
 
     private void ajustarBotones() {
-//        ajustarBtn("/Imagenes/rutas.png", btnRutas);
-//        ajustarBtn("/Imagenes/cliente.png", btnClientes);
-//        ajustarBtn("/Imagenes/empleado.png", btnEmpleados);
-//        ajustarBtn("/Imagenes/envio.png", btnEnvios);
-//        ajustarBtn("/Imagenes/paquete.png", btnPaquetes);
+        ajustarBtn("/Imagenes/buscar.png",btnBuscar);
+        ajustarBtn("/Imagenes/guardar.png",btnAgregar);
+        ajustarBtn("/Imagenes/limpiar.png",btnLimpiar);
+        ajustarBtn("/Imagenes/Lista.png",btnEnlistar);
+        ajustarBtn("/Imagenes/entregar.png",btnEntregar);
+        ajustarBtn("/Imagenes/despachar.png",btnDespachar);
+        ajustarBtn("/Imagenes/cancelar.png",btnCancelar);
+    
     }
 
-    private void ajustarBtn(String ubicacion, javax.swing.JButton boton) {
-        ImageIcon image = new ImageIcon(getClass().getResource(ubicacion));
-        Icon icon = new ImageIcon(image.getImage().getScaledInstance(boton.getWidth(), boton.getHeight(), Image.SCALE_DEFAULT));
-        boton.setIcon(icon);
+    private void ajustarBtn(String ubicacion, javax.swing.JButton cosa) {
+         final ImageIcon image = new ImageIcon(getClass().getResource(ubicacion));
+
+        cosa.addHierarchyListener(new HierarchyListener() {
+            @Override
+            public void hierarchyChanged(HierarchyEvent e) {
+                if ((e.getChangeFlags() & HierarchyEvent.SHOWING_CHANGED) != 0 && cosa.isShowing()) {
+                    Icon icon = new ImageIcon(image.getImage().getScaledInstance(cosa.getWidth(), cosa.getHeight(), Image.SCALE_DEFAULT));
+                    cosa.setIcon(icon);
+                    
+                    cosa.removeHierarchyListener(this);
+                }
+            }
+        });
     }
 
 }

@@ -6,6 +6,7 @@ package Envios;
 
 import Paquetes.Paquete;
 import Personas.Cliente;
+import Personas.ListaCliente;
 import RutasEntrega.RutaEntrega;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -69,6 +70,10 @@ public class ListaEnvios {
     public ListaEnvios() {
         this.envios = new LinkedList<>();
         this.contadorEnvios = 0;
+    }
+    
+    public ListaCliente crearListaClientes() {
+        return new ListaCliente(this); 
     }
     
 }

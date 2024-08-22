@@ -312,7 +312,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
         });
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar.png"))); // NOI18N
-        btnAgregar.setToolTipText("Nuevo");
+        btnAgregar.setToolTipText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -327,6 +327,7 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
             }
         });
 
+        btnLista.setToolTipText("Listar");
         btnLista.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

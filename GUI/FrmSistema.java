@@ -25,7 +25,7 @@ public class FrmSistema extends javax.swing.JFrame {
     private static FrmSistema instancia;
     private ListaEnvios envios = new ListaEnvios();
     private ListaPaquetes paquetes = new ListaPaquetes();
-    private ListaCliente clientes = new ListaCliente();
+    private ListaCliente clientes = new ListaCliente(envios);
     private ListaRutaEntrega rutas = new ListaRutaEntrega();
     private ListaEmpleado Empleados = new ListaEmpleado();
 
@@ -257,6 +257,11 @@ public class FrmSistema extends javax.swing.JFrame {
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_0, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem5.setFont(new java.awt.Font("sansserif", 2, 14)); // NOI18N
         jMenuItem5.setText("Envios");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         Administrar.add(jMenuItem5);
 
         jMenuBar1.add(Administrar);
@@ -278,7 +283,10 @@ public class FrmSistema extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+         FrmEmpleados frm = new FrmEmpleados();
+        this.deskMenu.add(frm);
+        frm.setLocation((this.deskMenu.getWidth() - frm.getWidth()) / 2, (this.deskMenu.getHeight() - frm.getHeight()) / 2);
+        frm.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -296,7 +304,10 @@ public class FrmSistema extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+     FrmCliente frm = new FrmCliente(clientes);
+        this.deskMenu.add(frm);
+        frm.setLocation((this.deskMenu.getWidth() - frm.getWidth()) / 2, (this.deskMenu.getHeight() - frm.getHeight()) / 2);
+        frm.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
@@ -333,6 +344,13 @@ public class FrmSistema extends javax.swing.JFrame {
         frm.setLocation((this.deskMenu.getWidth() - frm.getWidth()) / 2, (this.deskMenu.getHeight() - frm.getHeight()) / 2);
         frm.setVisible(true);
     }//GEN-LAST:event_btnRutasActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        FrmEnvios frm = new FrmEnvios(envios, clientes, paquetes, rutas);
+        this.deskMenu.add(frm);
+        frm.setLocation((this.deskMenu.getWidth() - frm.getWidth()) / 2, (this.deskMenu.getHeight() - frm.getHeight()) / 2);
+        frm.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments

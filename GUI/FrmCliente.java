@@ -120,6 +120,7 @@ public class FrmCliente extends javax.swing.JInternalFrame {
 
         txtEdad.setEditable(false);
         txtEdad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtEdad.setEnabled(false);
         txtEdad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEdadActionPerformed(evt);
@@ -130,6 +131,11 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         jLabel7.setText("Edad");
 
         txtFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        txtFechaNacimiento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFechaNacimientoFocusLost(evt);
+            }
+        });
         txtFechaNacimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFechaNacimientoActionPerformed(evt);
@@ -210,7 +216,7 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         );
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar.png"))); // NOI18N
-        btnAgregar.setToolTipText("Nuevo");
+        btnAgregar.setToolTipText("Agregar");
         btnAgregar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,6 +260,7 @@ public class FrmCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        btnLista.setToolTipText("Listar");
         btnLista.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -439,12 +446,21 @@ public class FrmCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnListaActionPerformed
 
     private void txtFechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacimientoActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_txtFechaNacimientoActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoActionPerformed
+
+    private void txtFechaNacimientoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaNacimientoFocusLost
+        int edad;
+        LocalDate fechaNacimiento;
+        fechaNacimiento=LocalDate.parse(txtFechaNacimiento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));;
+        LocalDate fechaActual= LocalDate.now();
+        edad=fechaActual.getYear() - fechaNacimiento.getYear();
+        txtEdad.setText(String.valueOf(edad));
+    }//GEN-LAST:event_txtFechaNacimientoFocusLost
 
     public void ajustarBtn(final javax.swing.JButton cosa, final String ubicacion) {
         final ImageIcon image = new ImageIcon(getClass().getResource(ubicacion));

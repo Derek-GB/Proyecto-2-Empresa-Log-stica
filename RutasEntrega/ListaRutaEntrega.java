@@ -33,7 +33,7 @@ public class ListaRutaEntrega  {
     }
 
    public boolean actualizar(String codigo, String descripcion, HashSet<String> listaDestinos) {
-    for (RutaEntrega ruta : rutas) {
+     for (RutaEntrega ruta : rutas) {
         if (ruta.getCodigo().equals(codigo)) {
             boolean actualizado = false;
 
@@ -43,7 +43,8 @@ public class ListaRutaEntrega  {
             }
 
             if (listaDestinos != null && !listaDestinos.isEmpty()) {
-                ruta.setListaDestinos(listaDestinos);
+                ruta.getListaDestinos().clear(); 
+                ruta.getListaDestinos().addAll(listaDestinos);  
                 actualizado = true;
             }
 
