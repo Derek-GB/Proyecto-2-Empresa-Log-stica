@@ -14,6 +14,7 @@ import java.time.LocalDate;
  * @author d2tod
  */
 public class Envio {
+
     private int numeroEnvio;
     private Cliente cliente;
     private Paquete paquete;
@@ -50,15 +51,18 @@ public class Envio {
         return precio;
     }
 
-    private double calcularPrecio(double pesoKg){
+    private double calcularPrecio(double pesoKg) {
         return 900 + (pesoKg * 1200);
     }
-    
-    public void finalizar(){
-        fechaEntrega = LocalDate.now();
-        paquete.entregar();
+
+    public boolean finalizar() {
+        if (paquete.entregar()) {
+            fechaEntrega = LocalDate.now();
+            return true;
+        }
+        return false;
     }
-    
+
     protected Envio(int numeroEnvio, Cliente cliente, Paquete paquete, RutaEntrega ruta, double pesoKg) {
         this.numeroEnvio = numeroEnvio;
         this.cliente = cliente;
@@ -67,9 +71,9 @@ public class Envio {
         this.fechaEnvio = LocalDate.now();
         this.precio = calcularPrecio(pesoKg);
     }
-    
-    public Envio(){
-        this(-1,new Cliente(), new Paquete(), new RutaEntrega(),0.0);
+
+    public Envio() {
+        this(-1, new Cliente(), new Paquete(), new RutaEntrega(), 0.0);
         this.fechaEnvio = null;
         this.fechaEntrega = null;
     }
@@ -78,7 +82,5 @@ public class Envio {
     public String toString() {
         return "Envio{" + "numeroEnvio=" + numeroEnvio + ", cliente=" + cliente + ", paquete=" + paquete + ", ruta=" + ruta + ", fechaEnvio=" + fechaEnvio + ", fechaEntrega=" + fechaEntrega + ", precio=" + precio + '}';
     }
-    
-    
-    
+
 }

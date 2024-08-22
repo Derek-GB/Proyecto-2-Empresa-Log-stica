@@ -15,6 +15,9 @@ public class FrmBuscarEnvio extends javax.swing.JDialog {
     
     /**
      * Creates new form FrmBuscarEnvio
+     * @param parent
+     * @param modal
+     * @param contador
      */
     public FrmBuscarEnvio(java.awt.Frame parent, boolean modal, int contador) {
         super(parent, modal);
@@ -151,8 +154,9 @@ public class FrmBuscarEnvio extends javax.swing.JDialog {
             return;
         }
         
-        if (Integer.parseInt(txtNumeroBusqueda.getText()) < 0 || Integer.parseInt(txtNumeroBusqueda.getText()) > contador){
+        if (Integer.parseInt(txtNumeroBusqueda.getText()) < 0 || Integer.parseInt(txtNumeroBusqueda.getText()) > contador-1){
         JOptionPane.showMessageDialog(this, "No existe el envio Numero " + txtNumeroBusqueda.getText());
+        return;
     }
         this.dispose();
     }//GEN-LAST:event_btnBuscarActionPerformed

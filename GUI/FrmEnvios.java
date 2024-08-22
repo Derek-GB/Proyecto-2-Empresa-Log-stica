@@ -230,7 +230,7 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
         txtPrecio.setEditable(false);
         txtPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtPrecio.setText("0");
-        txtPrecio.setToolTipText("Nuemero de envio es autogestionado");
+        txtPrecio.setToolTipText("Numero de envio es autogestionado");
         txtPrecio.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,7 +251,7 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                            .addComponent(txtNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtCliente, 0, 157, Short.MAX_VALUE)
@@ -430,8 +430,7 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnEnlistar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnEnlistar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -540,7 +539,11 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El numero de envio es invalido");
             return;
         }
-        envio.finalizar();
+        if (envio.finalizar()){
+            JOptionPane.showMessageDialog(this, "El paquete ha sido registrado como entregado");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error: El estado del paquete no es despachado");
+        }
     }//GEN-LAST:event_btnEntregarActionPerformed
 
     private void txtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActionPerformed
@@ -557,7 +560,11 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El numero de envio es invalido");
             return;
         }
-        envio.getPaquete().despachar();
+        if (envio.getPaquete().despachar()){
+            JOptionPane.showMessageDialog(this, "El paquete ha sido despachado");
+        }else{
+            JOptionPane.showMessageDialog(this, "Error: El paquete ya no está en el almacen o fue cancelado");
+        }
     }//GEN-LAST:event_btnDespacharActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -566,7 +573,11 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El numero de envio es invalido");
             return;
         }
-        envio.getPaquete().cancelar();
+        if (envio.getPaquete().cancelar()){
+            JOptionPane.showMessageDialog(this, "El paquete ha sido cancelado");
+        }else{
+            JOptionPane.showMessageDialog(this, "Error: El paquete ya no está en el almacen o fue cancelado");
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEnlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnlistarActionPerformed

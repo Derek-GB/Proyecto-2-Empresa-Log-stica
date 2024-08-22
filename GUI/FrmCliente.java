@@ -120,7 +120,7 @@ public class FrmCliente extends javax.swing.JInternalFrame {
 
         txtEdad.setEditable(false);
         txtEdad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtEdad.setEnabled(false);
+        txtEdad.setToolTipText("Edad se basa en la fecha de nacimiento");
         txtEdad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEdadActionPerformed(evt);
@@ -456,7 +456,11 @@ public class FrmCliente extends javax.swing.JInternalFrame {
     private void txtFechaNacimientoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaNacimientoFocusLost
         int edad;
         LocalDate fechaNacimiento;
-        fechaNacimiento=LocalDate.parse(txtFechaNacimiento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));;
+        try{
+        fechaNacimiento=LocalDate.parse(txtFechaNacimiento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        }catch (DateTimeParseException e){
+            return;
+        }
         LocalDate fechaActual= LocalDate.now();
         edad=fechaActual.getYear() - fechaNacimiento.getYear();
         txtEdad.setText(String.valueOf(edad));
