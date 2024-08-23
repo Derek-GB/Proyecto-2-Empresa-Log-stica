@@ -100,9 +100,9 @@ public class FrmListaPaquetes extends javax.swing.JDialog {
         Paquete paquete = i.next();
         Object data[] = {
             paquete.getCodigo(), 
-            paquete.getPeso(),  
-            paquete.getRemitente().getNombre(),
+            paquete.getPeso(), 
             paquete.getDestinatario().getNombre(), 
+            paquete.getRemitente().getNombre(),
             paquete.getEstado() ,
             paquete.getDescripcion(),                           
                            
