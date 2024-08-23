@@ -11,6 +11,7 @@ import Personas.Persona;
 import java.awt.Image;
 import java.awt.event.HierarchyEvent;
 import java.awt.event.HierarchyListener;
+import java.util.Iterator;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -405,14 +406,30 @@ public class FrmPaquetes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
-        String codigo = txtCodigo.getText();
-        try {
-            lista.eliminar(codigo);
-            JOptionPane.showMessageDialog(this, "El paquete con el código " + codigo + " fue eliminado");
-            Limpiar();
-        } catch (IllegalArgumentException nombre) {
-            JOptionPane.showMessageDialog(this, "El paquete no existe");
+       String codigo = txtCodigo.getText();
+    boolean codigoExiste = false;
+    Iterator<Paquete> iterador = lista.getPaquetes(); 
+
+    while (iterador.hasNext()) {
+        Paquete paquete = iterador.next();
+        if (paquete.getCodigo().equals(codigo)) {
+            codigoExiste = true;
+            break;
         }
+    }
+
+    if (!codigoExiste) {
+        JOptionPane.showMessageDialog(this, "El código " + codigo + " no existe.");
+        return;
+    }
+
+    try {
+        lista.eliminar(codigo);
+        JOptionPane.showMessageDialog(this, "El paquete con el código " + codigo + " fue eliminado");
+        Limpiar();
+    } catch (IllegalArgumentException nombre) {
+        JOptionPane.showMessageDialog(this, "No se puede eliminar, el paquete está en tránsito.");
+    }
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed

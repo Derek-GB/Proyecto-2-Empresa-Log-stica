@@ -260,6 +260,7 @@ public class FrmRutasEntrega extends javax.swing.JInternalFrame {
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
     String codigo = txtCodigo.getText();
                  ruta = lista.buscar(codigo);
+                 txtRutasDestino.setText("");
                 if (ruta != null) {
                     txtCodigo.setText(ruta.getCodigo());
                     txtDescripcion.setText(ruta.getDescripcion());

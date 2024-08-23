@@ -5,6 +5,7 @@
 package GUI;
 
 import Personas.Cliente;
+import Personas.ClienteConPaquetesEnTransitoException;
 import Personas.ListaCliente;
 import java.awt.Image;
 import java.awt.event.HierarchyEvent;
@@ -12,6 +13,7 @@ import java.awt.event.HierarchyListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Iterator;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -355,14 +357,30 @@ public class FrmCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtEdadActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
-        String identificacion = txtIdentificacion.getText();
-        if(identificacion != null){
-            lista.eliminar(identificacion);
-            JOptionPane.showMessageDialog(this, "El cliente con la identificacion " + identificacion + " fue eliminado");
-            Limpiar();
-        }else{
-            JOptionPane.showMessageDialog(this, "El cliente con la identificacion " + identificacion + " no existe");
+    String identificacion = txtIdentificacion.getText();
+    boolean identificacionExiste = false;
+    Iterator<Cliente> iterador = lista.getClientes();
+
+    while (iterador.hasNext()) {
+        Cliente cliente = iterador.next();
+        if (cliente.getIdentificacion().equals(identificacion)) {
+            identificacionExiste = true;
+            break;
         }
+    }
+
+    if (!identificacionExiste) {
+        JOptionPane.showMessageDialog(this, "La identificación " + identificacion + " no existe.");
+        return;
+    }
+
+    try {
+        lista.eliminar(identificacion);
+        JOptionPane.showMessageDialog(this, "El cliente con la identificación " + identificacion + " fue eliminado");
+        Limpiar();
+    } catch (ClienteConPaquetesEnTransitoException nombre) {
+        JOptionPane.showMessageDialog(this, "No se puede eliminar, el cliente tiene un paquete en tránsito");
+    }
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
