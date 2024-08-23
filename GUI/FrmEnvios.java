@@ -10,14 +10,11 @@ import Paquetes.ListaPaquetes;
 import Paquetes.Paquete;
 import Personas.Cliente;
 import Personas.ListaCliente;
-import Personas.Persona;
 import RutasEntrega.ListaRutaEntrega;
 import RutasEntrega.RutaEntrega;
 import java.awt.Image;
 import java.awt.event.HierarchyEvent;
 import java.awt.event.HierarchyListener;
-import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Iterator;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -33,6 +30,8 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
     private ListaPaquetes paquetes;
     private ListaCliente clientes;
     private ListaRutaEntrega rutas;
+    private boolean bloqueo;
+    private int indiceBloqueoCliente, indiceBloqueoPaquete, indiceBloqueoRuta;
 
     /**
      * Creates new form FrmEnvios
@@ -41,7 +40,6 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
      * @param clientes
      * @param paquetes
      * @param rutas
-     * @param numeroEnvio
      */
     public FrmEnvios(ListaEnvios lista, ListaCliente clientes, ListaPaquetes paquetes, ListaRutaEntrega rutas) {
         initComponents();
@@ -49,6 +47,7 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
         this.clientes = clientes;
         this.paquetes = paquetes;
         this.rutas = rutas;
+        this.bloqueo = false;
         actualizarComboBoxs();
         ajustarBotones();
     }
@@ -60,11 +59,6 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
         labelEntrega.setEnabled(permitir);
     }
 
-//    public void prueba() {
-//        clientes.agregar(new Cliente(LocalDate.now(), "gvuirj", "vgr", "tgvrf", "hbtgvrf"));
-//        paquetes.agregar("fd", new Paquete("trfed", "frdes", 3.3, new Persona(), new Persona()));
-//        rutas.agregar(new RutaEntrega("dee", "derfd", "aaaaaaaa", new HashSet<>()));
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -456,10 +450,17 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClienteActionPerformed
-
+        if (bloqueo) {
+            txtCliente.setSelectedIndex(indiceBloqueoCliente);
+        }
     }//GEN-LAST:event_txtClienteActionPerformed
 
     private void txtPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaqueteActionPerformed
+        if (bloqueo) {
+            txtPaquete.setSelectedIndex(indiceBloqueoPaquete);
+            return;
+        }
+
         if (txtPaquete.getSelectedIndex() == -1) {
             txtPrecio.setText("0");
             return;
@@ -474,9 +475,11 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPaqueteActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        bloquearComboBoxs(false);
         limpiarCampos();
         txtNumero.setText(String.valueOf(lista.getContador()));
         mostrarFechas(false);
+        btnAgregar.setEnabled(true);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -516,6 +519,12 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
             return;
         }
 
+        btnAgregar.setEnabled(false);
+        
+        if (bloqueo) {
+            bloquearComboBoxs(false);
+        }
+
         Envio envio = lista.buscar(numero);
 
         txtNumero.setText(String.valueOf(envio.getNumeroEnvio()));
@@ -530,6 +539,7 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
         }
         txtPrecio.setText(String.valueOf(envio.getPrecio()));
         mostrarFechas(true);
+        bloquearComboBoxs(true);
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -539,7 +549,7 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El numero de envio es invalido");
             return;
         }
-        if (envio.finalizar()){
+        if (envio.finalizar()) {
             JOptionPane.showMessageDialog(this, "El paquete ha sido registrado como entregado");
         } else {
             JOptionPane.showMessageDialog(this, "Error: El estado del paquete no es despachado");
@@ -547,11 +557,13 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEntregarActionPerformed
 
     private void txtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtNumeroActionPerformed
 
     private void txtRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutaActionPerformed
-        // TODO add your handling code here:
+        if (bloqueo) {
+            txtRuta.setSelectedIndex(indiceBloqueoRuta);
+        }
     }//GEN-LAST:event_txtRutaActionPerformed
 
     private void btnDespacharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespacharActionPerformed
@@ -560,9 +572,9 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El numero de envio es invalido");
             return;
         }
-        if (envio.getPaquete().despachar()){
+        if (envio.getPaquete().despachar()) {
             JOptionPane.showMessageDialog(this, "El paquete ha sido despachado");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Error: El paquete ya no está en el almacen o fue cancelado");
         }
     }//GEN-LAST:event_btnDespacharActionPerformed
@@ -573,15 +585,15 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El numero de envio es invalido");
             return;
         }
-        if (envio.getPaquete().cancelar()){
+        if (envio.getPaquete().cancelar()) {
             JOptionPane.showMessageDialog(this, "El paquete ha sido cancelado");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Error: El paquete ya no está en el almacen o fue cancelado");
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEnlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnlistarActionPerformed
-     FrmListaEnvios frm=new FrmListaEnvios(null,true,lista);
+        FrmListaEnvios frm = new FrmListaEnvios(null, true, lista);
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
     }//GEN-LAST:event_btnEnlistarActionPerformed
@@ -689,6 +701,15 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
         return -1;
     }
 
+    private void bloquearComboBoxs(boolean bloqueo) {
+        this.bloqueo = bloqueo;
+        if (bloqueo) {
+            indiceBloqueoCliente = txtCliente.getSelectedIndex();
+            indiceBloqueoPaquete = txtPaquete.getSelectedIndex();
+            indiceBloqueoRuta = txtRuta.getSelectedIndex();
+        }
+    }
+
     private void iterarBotones(boolean agregar, boolean listar, boolean nuevo, boolean atender, boolean cancelar) {
         btnAgregar.setEnabled(agregar);
         btnDespachar.setEnabled(listar);
@@ -707,18 +728,18 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
     }
 
     private void ajustarBotones() {
-        ajustarBtn("/Imagenes/buscar.png",btnBuscar);
-        ajustarBtn("/Imagenes/guardar.png",btnAgregar);
-        ajustarBtn("/Imagenes/limpiar.png",btnLimpiar);
-        ajustarBtn("/Imagenes/Lista.png",btnEnlistar);
-        ajustarBtn("/Imagenes/entregar.png",btnEntregar);
-        ajustarBtn("/Imagenes/despachar.png",btnDespachar);
-        ajustarBtn("/Imagenes/cancelar.png",btnCancelar);
-    
+        ajustarBtn("/Imagenes/buscar.png", btnBuscar);
+        ajustarBtn("/Imagenes/guardar.png", btnAgregar);
+        ajustarBtn("/Imagenes/limpiar.png", btnLimpiar);
+        ajustarBtn("/Imagenes/Lista.png", btnEnlistar);
+        ajustarBtn("/Imagenes/entregar.png", btnEntregar);
+        ajustarBtn("/Imagenes/despachar.png", btnDespachar);
+        ajustarBtn("/Imagenes/cancelar.png", btnCancelar);
+
     }
 
     private void ajustarBtn(String ubicacion, javax.swing.JButton cosa) {
-         final ImageIcon image = new ImageIcon(getClass().getResource(ubicacion));
+        final ImageIcon image = new ImageIcon(getClass().getResource(ubicacion));
 
         cosa.addHierarchyListener(new HierarchyListener() {
             @Override
@@ -726,7 +747,7 @@ public final class FrmEnvios extends javax.swing.JInternalFrame {
                 if ((e.getChangeFlags() & HierarchyEvent.SHOWING_CHANGED) != 0 && cosa.isShowing()) {
                     Icon icon = new ImageIcon(image.getImage().getScaledInstance(cosa.getWidth(), cosa.getHeight(), Image.SCALE_DEFAULT));
                     cosa.setIcon(icon);
-                    
+
                     cosa.removeHierarchyListener(this);
                 }
             }
