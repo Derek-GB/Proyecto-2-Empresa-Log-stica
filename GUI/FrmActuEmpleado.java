@@ -200,8 +200,8 @@ public class FrmActuEmpleado extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         String identificacion = txtIdentificacion.getText().trim();
-        String telefono = txtTelefono.getText().trim();
         String correo = txtCorreo.getText().trim();
+        String telefono = txtTelefono.getText().trim();
         String seleccion = (String) cbxPuesto.getSelectedItem();
         PuestoEnum puesto;
        switch (seleccion) {
@@ -228,7 +228,7 @@ public class FrmActuEmpleado extends javax.swing.JDialog {
             break;
     }
 
-        boolean actualizado = lista.actualizar(identificacion, telefono, correo,puesto);
+        boolean actualizado = lista.actualizar(identificacion,correo,telefono,puesto);
 
         if (actualizado) {
             JOptionPane.showMessageDialog(this, "Se actualizó el empleado correctamente.");

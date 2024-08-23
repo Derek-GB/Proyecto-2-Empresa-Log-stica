@@ -170,10 +170,11 @@ public class FrmActuClientes extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         String identificacion = txtIdentificacion.getText().trim();
-        String telefono = txtTelefono.getText().trim();
         String correo = txtCorreo.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        
 
-        boolean actualizado = lista.actualizar(identificacion, telefono, correo);
+        boolean actualizado = lista.actualizar(identificacion,correo,telefono);
 
         if (actualizado) {
             JOptionPane.showMessageDialog(this, "Se actualizó el cliente correctamente.");
